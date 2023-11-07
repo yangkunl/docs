@@ -1,6 +1,6 @@
 <!-- _coverpage.md -->
 
-# 文献阅读笔记 <small>11月6日更新</small>
+# :registered:文献阅读笔记 <small>11月7日更新</small>
 
 > :triangular_flag_on_post:视频理解
 >
@@ -9,4 +9,4 @@
 > :triangular_flag_on_post:小样本学习
 
 [GitHub](https://github.com/yangkunl/docs)
-[Get Started](#/md/all)
+[Get Started](#/md//all)
