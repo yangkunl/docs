@@ -11,34 +11,95 @@
   <!--https://osiris-ui.github.io/osiris/#/quick-start-->
   <!--<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/buble.css">-->
   <!--<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/dark.css">-->
+
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/pure.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" />
+  <!-- 公式 -->
+<!--  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" />-->
   <!--  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">-->
 </head>
 <body>
   <div id="app">加载中</div>
   <script>
     window.$docsify = {
-      name: 'EasyioLib for ESP32', // 文档标题，会显示在侧边栏顶部
+      logo: '/_media/logo.png',
+      name: '<span>文献阅读笔记<span>', // 文档标题，会显示在侧边栏顶部
       repo: 'https://github.com/ZhiliangMa/easyio-lib-for-esp32', // 右上角Github图标链接
       loadNavbar: true, // 默认加载 _navbar.md，作为顶部导航栏
       loadSidebar: true, // 默认加载 _sidebar.md，作为侧边栏
-      subMaxLevel: 3, // 生成目录的最大层级
+      autoHeader: false,
+      subMaxLevel: 4, // 生成目录的最大层级
       coverpage: true, //docsify便会默认加载 _coverpage.md，来作为封面的格式
+    //   plugins: [
+    //   EditOnGithubPlugin.create(
+    //           'https://github.com/yangkunl/docs.doc',
+    //            null,
+    // )],
       search: {
         paths: 'auto',
         placeholder: '搜索',
         noData: '找不到结果',
         depth: 3,
       },
+      count: {// 字数插件
+        countable: true,
+        position: 'top',
+        margin: '10px',
+        float: 'left',
+        fontsize: '0.9em',
+        color: 'rgb(173,32,32)',
+        language: 'chinese',
+        localization: {
+          words: "",
+          minute: ""
+        },
+        isExpected: true
+      },
+      pagination: {
+        previousText: '上一章节',
+        nextText: '下一章节',
+        crossChapter: true,
+        crossChapterText: true,
+      },
+      latex: {
+        inlineMath   : [['$', '$'], ['\\(', '\\)']], // default
+        displayMath  : [['$$', '$$']],               // default
+      },
+      pagination: {
+        previousText: '上一章节',
+        nextText: '下一章节',
+      },
     }
   </script>
+  <!--在github上编辑  -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-edit-on-github"></script>
+   <!-- 美化提示 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-plugin-flexible-alerts"></script>
+  <!--在所有的代码块上添加一个简单的Click to copy按钮来允许用户从你的文档中轻易地复制代码-->
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+  <!-- emoji表情支持 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+  <!-- 图片放大缩小支持 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+  <!-- 翻页 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <!-- 字数插件 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-count@latest/dist/countable.min.js"></script>
+  <!-- 公式 -->
+  <script src="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/marked@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script>
+<!--  <script src="//cdn.jsdelivr.net/npm/docsify-latex@0"></script>-->
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
   <!-- 搜索插件 -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <!-- 一键复制插件 -->
   <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+<!--  <script src="//cdn.jsdelivr.net/npm/docsify-latex@0"></script>-->
   <!-- 代码高亮 -->
+<!--  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>-->
+<!--  <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>-->
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-c.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
