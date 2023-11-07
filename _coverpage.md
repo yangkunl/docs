@@ -8,5 +8,5 @@
 >
 > :triangular_flag_on_post:小样本学习
 
-[GitHub](https://github.com/yangkunl/docs.doc)
-[Get Started](#docsify)
+[GitHub](https://github.com/yangkunl/docs)
+[Get Started](#/md//all)

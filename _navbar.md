@@ -1,10 +1,13 @@
 * :100:教程&课程
-  * [win环境搭建](https://blog.csdn.net/Mark_md/article/details/120132945?spm=1001.2014.3001.5501)
-  * [视频]()
-  * [ESP-IDF](https://blog.csdn.net/mark_md/category_10794878.html)
-  * [Arduino](https://blog.csdn.net/mark_md/category_11477137.html)
+  * [动手学深度学习](https://space.bilibili.com/1567748478/channel/seriesdetail?sid=358497)
+  * [机器学习公式推导](https://www.bilibili.com/video/BV1aE411o7qd/?spm_id_from=333.999.top_right_bar_window_default_collection.content.click&vd_source=6648f28bd4ed315352ef1ca819bc8e55)
+  * [跟李沐精读AI论文](https://github.com/mli/paper-reading)
+  * [李宏毅机器学习2023](https://www.bilibili.com/video/BV1NX4y1r7nP/?spm_id_from=333.337.search-card.all.click&vd_source=6648f28bd4ed315352ef1ca819bc8e55)
 * :construction_worker:源码&资料
-  * [Github](https://github.com/ZhiliangMa/easyio-lib-for-esp32)
-  * [LVGL](https://github.com/ZhiliangMa/lv_port_esp32)
-  * [原理图](https://github.com/ZhiliangMa/easyio-lib-for-esp32/blob/master/Schematic_ESP32-IOT-KIT_2021-11-16.pdf)
-  * [店铺]()
+  * [Github](https://github.com/)
+* :up:科研资源导航
+  * [谷歌学术搜索](https://scholar.chongbuluo.com/)
+  * [ccf-deadlines](https://ccfddl.github.io/)
+  * [Papers With Code](https://paperswithcode.com/)
+  * [ChatPaper ](https://chatwithpaper.org/)
+  * [arXiv](https://arxiv.org/)

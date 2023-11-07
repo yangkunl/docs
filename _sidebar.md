@@ -1,12 +1,13 @@
-* :arrow_up_small:论文
-    * :taurus:小样本动作识别
+* :arrow_up_small:**论文阅读**
+    * [**阅读论文总览**](md/all.md)
+    * :taurus:**小样本动作识别**
         * [easyio库概况](md/easyio_lib.md)
         * [配套开发板概况](md/esp32_iot_kit.md)
-    * :libra:基于骨架的动作识别
+    * :libra:**基于骨架的动作识别**
         * [配套开发板概况](md/esp32_iot_kit.md)
-    * :pisces:对比学习
+    * :pisces:**对比学习**
         * [配套开发板概况](md/esp32_iot_kit.md)
-    * :aquarius:多模态
+    * :aquarius:**多模态**
         * [01_blink](md/01_blink.md)
         * [02_ledBlink](md/02_ledBlink.md)
         * [03_easyio_led](md/03_easyio_led.md)
