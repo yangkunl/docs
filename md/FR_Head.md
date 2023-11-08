@@ -1,9 +1,75 @@
+**Learning Discriminative Representations for Skeleton Based Action Recognition**（CVPR2023）
+
+# 模型结构图
+
 ![\<img alt="" data-attachment-key="WLFHTVGU" width="1026" height="622" src="attachments/WLFHTVGU.png" ztype="zimage">](attachments/WLFHTVGU.png)
 
-本文提出了一种使用对比学习来提升模糊动作特征区分能力的特征细化模块。首先，将隐藏特征分解为空间和时间组成部分，以便网络能够更好地在拓扑和时间维度上关注模糊动作中的区分部分。然后，在训练过程中根据模型预测结果确定自信和模糊样本。自信样本用于为每个类维护原型，通过对比学习损失来约束类内和类间距离。同时，在特征空间中校准模糊样本，使其更接近或远离自信样本。此外，该特征细化模块可以嵌入多种类型的图卷积网络（GCNs）中，以改进分层特征学习，并通过联合训练多级对比损失和分类损失来提高模糊动作的性能。本文的创新点主要体现在以下几个方面：
+## 方法
 
-1.  引入对比学习来提升模糊动作特征的区分能力。
-2.  将隐藏特征分解为空间和时间组成部分，从而更好地关注模糊动作中的区分部分。
-3.  利用对比学习损失约束样本在特征空间中的距离，使模糊样本与自信样本更好地区分开。
-4.  将特征细化模块嵌入到多种类型的GCNs中，提高分层特征学习的效果。\
-    总体而言，本文提出的特征细化模块通过对比学习来改进模糊动作特征的区分能力，进一步提高了动作识别的性能。
+- #### 任务：基于骨骼点的动作识别
+
+- #### 创新点
+
+  - 提出了一种使用对比学习的模块
+  - 该模块将模型每一个stage提取的特征进行了时空解耦（用于区分时空要求不同的动作）
+  - 使用对比学习进行了特征细化（提升模糊特征区分能力）
+  - 将该模块运用在模型的不同的stage上（精细化特征）
+
+- #### 具体实现
+
+  - 时空解耦：通过对特征不同维度进行池化得到，同时注意要过一个**1X1卷积**，缩放某一维度，以便flatten之后能够得到尺寸一样的向量
+
+  - 对比学习：
+
+    - 在一个batch中，根据每一个类别，例如类别k，将样本分为（TP，FP，FN）。根据模型每一个batch的标签和预测结果，将模型分为分类正确（TP），将其他类错误分为类别k（FP），将类别k错误分为其他类（FN）。
+
+    - 在一个batch中，利用每一个类别的分类正确样本计算该类的原型（prototypes），例如第k类的原型计算公式如下（涉及之前原型的更新，因此是**全局特征**）：
+
+      ![image-20231108201512964](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108201512964.png)
+
+    - 同时计算一个batch中第k类的使用FP，和FN样本的**局部特征**：
+
+      ![image-20231108201834382](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108201834382.png)
+
+    - 对于第k类相关的模糊样本（FN，FP），进行校正（就是让$FN$离**分类正确**的$F_i$越来越近，让$FP$离**分类正确**的$F_i$越来越远）：
+      ![image-20231108202000994](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108202000994.png)
+
+
+
+![image-20231108202008705](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108202008705.png)
+
+- #### 整个对比学习的损失：
+
+  这里的$i$是第k类
+
+  ![image-20231108202218057](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108202218057.png)
+
+- 总的损失：
+
+  ![image-20231108203141462](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108203141462.png)
+
+![image-20231108203155642](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108203155642.png)
+
+![image-20231108203202218](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108203202218.png)
+
+## 实验设置
+
+- #### 数据集
+
+  数据集为 **NTU RGB+D** 和**NTU RGB+D 120**，**NW-UCLA**
+
+- #### 消融实验
+
+  - 加时空解耦，对比损失等
+
+    ![image-20231108203445836](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108203445836.png)
+
+  - 不同stage特征的权重
+
+    ![image-20231108203601226](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108203601226.png)
+
+
+
+- #### SOTA
+
+![image-20231108203717713](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108203717713.png)
