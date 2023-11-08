@@ -11,3 +11,4 @@
   * [Papers With Code](https://paperswithcode.com/)
   * [ChatPaper ](https://chatwithpaper.org/)
   * [arXiv](https://arxiv.org/)
+  * [connected paper](https://www.connectedpapers.com/)

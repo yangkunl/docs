@@ -6,13 +6,13 @@
 
 ## 方法
 
-- #### 创新点
+- ### 创新点
 
   - 提出了一种新的骨骼动作识别训练方法**SkeletonGCL**
   - 使用模型生成的不同序列之间的**学习图**进行对比
   - 构建了**实例级别和语义级别的Memory Bank**用于对比学习
 
-- #### 具体实现
+- ### 具体实现
 
   - 将模型对样本生成的图数据（$Ks\times C \times N \times N$）,先通过平均池化，Flatten，和一个全连接，得到尺寸为$c_g$的向量$v$,其中$c_g$为类别数
 
@@ -28,10 +28,11 @@
 
 ## 实验
 
-- #### 消融实验
+- ### 消融实验
 
-  ![image-20231108211431157](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108211431157.png)
+  ![image-20231108211431157](attachments/image-20231108211431157.png)
 
-- #### SOTA
+- ### SOTA
 
-  ![image-20231108211517359](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108211517359.png)
+  ![image-20231108211517359](attachments/image-20231108211517359.png)
+

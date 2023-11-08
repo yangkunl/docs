@@ -1,12 +1,14 @@
 <!-- _coverpage.md -->
 
-# :registered:文献阅读笔记 <small>11月7日更新</small>
+<img src="_media\keda.png" alt="logo" style="zoom: 33%;" />
 
-> :triangular_flag_on_post:视频理解
->
-> :triangular_flag_on_post:动作识别
->
-> :triangular_flag_on_post:小样本学习
+# :registered:文献阅读笔记 <small>11月8日更新</small>
 
-[GitHub](https://github.com/yangkunl/docs)
-[Get Started](#/md/all.md)
+> :books:视频理解
+>
+> :books:动作识别
+>
+> :books:小样本学习
+
+[:key:GitHub](https://github.com/yangkunl/docs)
+[:key:Get Started](README.md)

@@ -4,9 +4,7 @@
 
 ![\<img alt="" data-attachment-key="WLFHTVGU" width="1026" height="622" src="attachments/WLFHTVGU.png" ztype="zimage">](attachments/WLFHTVGU.png)
 
-## 方法
-
-- #### 任务：基于骨骼点的动作识别
+### 方法
 
 - #### 创新点
 
@@ -25,51 +23,52 @@
 
     - 在一个batch中，利用每一个类别的分类正确样本计算该类的原型（prototypes），例如第k类的原型计算公式如下（涉及之前原型的更新，因此是**全局特征**）：
 
-      ![image-20231108201512964](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108201512964.png)
+      ![image-20231108201512964](attachments/image-20231108201512964.png)
 
     - 同时计算一个batch中第k类的使用FP，和FN样本的**局部特征**：
 
-      ![image-20231108201834382](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108201834382.png)
+      ![image-20231108201834382](attachments/image-20231108201834382.png)
 
     - 对于第k类相关的模糊样本（FN，FP），进行校正（就是让$FN$离**分类正确**的$F_i$越来越近，让$FP$离**分类正确**的$F_i$越来越远）：
-      ![image-20231108202000994](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108202000994.png)
+      ![image-20231108202000994](attachments/image-20231108202000994.png)
 
 
 
-![image-20231108202008705](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108202008705.png)
+![image-20231108202008705](attachments/image-20231108202008705.png)
 
-- #### 整个对比学习的损失：
+- #### 对比学习的损失：
 
   这里的$i$是第k类
 
-  ![image-20231108202218057](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108202218057.png)
+  ![image-20231108202218057](attachments/image-20231108202218057.png)
 
 - 总的损失：
 
-  ![image-20231108203141462](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108203141462.png)
+  ![image-20231108203141462](attachments/image-20231108203141462.png)
 
-![image-20231108203155642](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108203155642.png)
+![image-20231108203155642](attachments/image-20231108203155642.png)
 
-![image-20231108203202218](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108203202218.png)
+![image-20231108203202218](attachments/image-20231108203202218.png)
 
 ## 实验设置
 
-- #### 数据集
+- ### 数据集
 
   数据集为 **NTU RGB+D** 和**NTU RGB+D 120**，**NW-UCLA**
 
-- #### 消融实验
+- ### 消融实验
 
   - 加时空解耦，对比损失等
 
-    ![image-20231108203445836](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108203445836.png)
+    ![image-20231108203445836](attachments/image-20231108203445836.png)
 
   - 不同stage特征的权重
 
-    ![image-20231108203601226](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108203601226.png)
+    ![image-20231108203601226](attachments/image-20231108203601226.png)
 
 
 
-- #### SOTA
+- ### SOTA
 
-![image-20231108203717713](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108203717713.png)
+![image-20231108203717713](attachments/image-20231108203717713.png)
+
