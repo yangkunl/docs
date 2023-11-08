@@ -20,7 +20,7 @@
 
     
 
-    ![image-20231108210646134](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231108210646134.png)
+    ![image-20231108210646134](attachments/image-20231108210646134.png)
 
   - 使用对比学习的一般方法，将输入样本的特征向量$v$记为锚点，从两个Memory Bank中抽取正负样本（同一类为正样本，不同类为负样本）
 

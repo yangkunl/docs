@@ -38,11 +38,11 @@
 
 - 其在Kinetics，UCF101，SSv2，HMDB51上做了实验，5-way K-shot 其中K 从 1到5
 
-![image-20231108141648571](attachments/image-20231108141648571.png)
+<img src="attachments/image-20231108141648571.png" alt="image-20231108141648571" style="zoom:80%;" />
 
 - 其加载ViT的模型在各个数据集上均取得了最好，但是今年另一篇文章**超过了它的效果**，其同样也是使用了CLIP（Xing J, Wang M, Hou X, et al. Multimodal Adaptation of CLIP for Few-Shot Action Recognition[J]. arXiv preprint arXiv:2308.01532, 2023.）
 
-![image-20231108142109400](attachments/image-20231108142109400.png)
+<img src="attachments/image-20231108142109400.png" alt="image-20231108142109400" style="zoom:80%;" />
 
 ### plug and play
 

@@ -23,32 +23,32 @@
 
     - 在一个batch中，利用每一个类别的分类正确样本计算该类的原型（prototypes），例如第k类的原型计算公式如下（涉及之前原型的更新，因此是**全局特征**）：
 
-      ![image-20231108201512964](attachments/image-20231108201512964.png)
+      <img src="attachments/image-20231108201512964.png" alt="image-20231108201512964" style="zoom:50%;" />
 
     - 同时计算一个batch中第k类的使用FP，和FN样本的**局部特征**：
 
-      ![image-20231108201834382](attachments/image-20231108201834382.png)
+      <img src="attachments/image-20231108201834382.png" alt="image-20231108201834382" style="zoom:50%;" />
 
     - 对于第k类相关的模糊样本（FN，FP），进行校正（就是让$FN$离**分类正确**的$F_i$越来越近，让$FP$离**分类正确**的$F_i$越来越远）：
-      ![image-20231108202000994](attachments/image-20231108202000994.png)
+      <img src="attachments/image-20231108202000994.png" alt="image-20231108202000994" style="zoom:50%;" />
 
 
 
-![image-20231108202008705](attachments/image-20231108202008705.png)
+<img src="attachments/image-20231108202008705.png" alt="image-20231108202008705" style="zoom:50%;" />
 
 - #### 对比学习的损失：
 
   这里的$i$是第k类
 
-  ![image-20231108202218057](attachments/image-20231108202218057.png)
+  <img src="attachments/image-20231108202218057.png" alt="image-20231108202218057" style="zoom:50%;" />
 
 - 总的损失：
 
-  ![image-20231108203141462](attachments/image-20231108203141462.png)
+  <img src="attachments/image-20231108203141462.png" alt="image-20231108203141462" style="zoom:50%;" />
 
-![image-20231108203155642](attachments/image-20231108203155642.png)
+<img src="attachments/image-20231108203155642.png" alt="image-20231108203155642" style="zoom:50%;" />
 
-![image-20231108203202218](attachments/image-20231108203202218.png)
+<img src="attachments/image-20231108203202218.png" alt="image-20231108203202218" style="zoom:50%;" />
 
 ## 实验设置
 
@@ -60,15 +60,15 @@
 
   - 加时空解耦，对比损失等
 
-    ![image-20231108203445836](attachments/image-20231108203445836.png)
+    <img src="attachments/image-20231108203445836.png" alt="image-20231108203445836" style="zoom:80%;" />
 
   - 不同stage特征的权重
 
-    ![image-20231108203601226](attachments/image-20231108203601226.png)
+    <img src="attachments/image-20231108203601226.png" alt="image-20231108203601226" style="zoom:80%;" />
 
 
 
 - ### SOTA
 
-![image-20231108203717713](attachments/image-20231108203717713.png)
+<img src="attachments/image-20231108203717713.png" alt="image-20231108203717713" style="zoom:80%;" />
 
