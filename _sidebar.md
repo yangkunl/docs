@@ -1,5 +1,5 @@
 * :pensive:**论文阅读**
-    * [**阅读论文总览**](md/all.md)
+    * [**阅读论文总览**](README.md)
     * :one:**小样本动作识别**
         * [CLIP-FSAR](md/CLIP-FSAR.md)
         * [SloshNet](md/SloshNet.md)
@@ -10,6 +10,8 @@
         * [SkeletonGCL](md/SkeletonGCL.md)
     * :four:**多模态**
         * [CLIP-FSAR](md/CLIP-FSAR.md)
+    * :five:**自监督**
+        * [VideoMAE](md/VideoMAE.md)
 
 - :thinking:课程学习
 

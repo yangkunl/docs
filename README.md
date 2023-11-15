@@ -30,3 +30,9 @@
 | ------------------------------------------------------------ | ------------------------------------------- | -------------------------------------------------- | -------------------------------- | -------------- |
 | **Graph Contrastive Learning for Skeleton-based Action Recognition** | [ICLR2023](http://arxiv.org/abs/2301.10900) | [GitHub](https://github.com/OliverHxh/SkeletonGCL) | [SkeletonGCL](md/SkeletonGCL.md) | 2023.11.1~11.6 |
 
+- **自监督**
+
+| 文章名称                                                     | PDF                                            | 代码                                          | 笔记                       | 阅读时间  |
+| ------------------------------------------------------------ | ---------------------------------------------- | --------------------------------------------- | -------------------------- | --------- |
+| **VideoMAE: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training** | [NeurIPS2022](http://arxiv.org/abs/2203.12602) | [Github](https://github.com/MCG-NJU/VideoMAE) | [VideoMAE](md/VideoMAE.md) | 2023.11.9 |
+
