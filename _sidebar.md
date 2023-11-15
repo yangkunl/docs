@@ -1,11 +1,15 @@
 * :pensive:**论文阅读**
     * [**阅读论文总览**](README.md)
-    * :one:**小样本动作识别**
+    * :one:**视频理解(动作识别)**:
         * [CLIP-FSAR](md/CLIP-FSAR.md)
         * [SloshNet](md/SloshNet.md)
-    * :two:**基于骨骼点的动作识别**
         * [FR_Head](md/FR_Head.md)
         * [SkeletonGCL](md/SkeletonGCL.md)
+        * [AIM](md/AIM.md)
+        * [TRX](md/TRX.md)
+    * :two:**小样本学习**
+        * [CLIP-FSAR](md/CLIP-FSAR.md)
+        * [SloshNet](md/SloshNet.md)
     * :three:**对比学习**
         * [SkeletonGCL](md/SkeletonGCL.md)
     * :four:**多模态**
@@ -25,3 +29,7 @@
     - [7.概率图模型](study/7.PGMIntro.md)
 
   - :two:动手学深度学习
+  
+  - :three:[数据结构与算法](others/数据结构与算法.md)
+  
+  - :four:[python学习](others/python特性.md)
