@@ -30,6 +30,9 @@
 
   - :two:动手学深度学习
   
-  - :three:[数据结构与算法](others/数据结构与算法.md)
+  - :three:数据结构与算法
+    - [数据结构与算法](others/数据结构与算法.md)
   
-  - :four:[python学习](others/python特性.md)
+  - :four:Cpython
+    - [Cpython](others/python特性.md)
+  

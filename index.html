@@ -71,6 +71,21 @@
       },
     }
   </script>
+  <!--在回到顶部 -->
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $.goup({
+        trigger: 100,
+        bottomOffset: 32,
+        locationOffset: 32,
+        title: 'TOP',
+        titleAsText: true
+      });
+    });
+  </script>
+  <script src="https://wugenqiang.github.io/CS-Notes/plugin/jquery.js"></script>
+  <script src="https://wugenqiang.github.io/CS-Notes/plugin/jquery.goup.js"></script>
+
   <!--在github上编辑  -->
   <script src="//cdn.jsdelivr.net/npm/docsify-edit-on-github"></script>
    <!-- 美化提示 -->

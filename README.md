@@ -2,11 +2,11 @@
 
 # 本周新读文献(11月15日)
 
-| 文章名称                                                     | PDF                                            | 代码                                            | 笔记                                          |
-| ------------------------------------------------------------ | ---------------------------------------------- | ----------------------------------------------- | --------------------------------------------- |
-| **AIM: Adapting Image Models for Efficient Video Action Recognition** | [ICLR2023](http://arxiv.org/abs/2302.03024)    | [GitHub](https://adapt-image-models.github.io/) | [AIM](md/AIM.md)                              |
-| **Temporal-Relational CrossTransformers for Few-Shot Action Recognition** | [CVPR2021](http://arxiv.org/abs/2101.06184)    | [GitHub](https://github.com/tobyperrett/TRX)    | [TRX](md/TRX.md)                              |
-| **VideoMAE: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training** | [NeurIPS2022](http://arxiv.org/abs/2203.12602) | [Github](https://github.com/MCG-NJU/VideoMAE)   | [Github](https://github.com/MCG-NJU/VideoMAE) |
+| 文章名称                                                     | PDF                                            | 代码                                            | 笔记                       |
+| ------------------------------------------------------------ | ---------------------------------------------- | ----------------------------------------------- | -------------------------- |
+| **AIM: Adapting Image Models for Efficient Video Action Recognition** | [ICLR2023](http://arxiv.org/abs/2302.03024)    | [GitHub](https://adapt-image-models.github.io/) | [AIM](md/AIM.md)           |
+| **Temporal-Relational CrossTransformers for Few-Shot Action Recognition** | [CVPR2021](http://arxiv.org/abs/2101.06184)    | [GitHub](https://github.com/tobyperrett/TRX)    | [TRX](md/TRX.md)           |
+| **VideoMAE: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training** | [NeurIPS2022](http://arxiv.org/abs/2203.12602) | [Github](https://github.com/MCG-NJU/VideoMAE)   | [VideoMAE](md/VideoMAE.md) |
 
 
 
