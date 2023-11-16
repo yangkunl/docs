@@ -14,13 +14,21 @@ a {
 }
 /* 设置行距为1.5倍 */
 body {
+    /*transform: scale(1.15);*/
+  /*transform-origin: 0 0; !* 设置变换原点为左上角 *!*/
+  /*  zoom: 125%;*/
   line-height: 1.5;
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: '黑体', 'SimHei', sans-serif;
   font-weight: bold;
 }
-
+/* 设置页面内容宽度相对于视窗宽度，并保证最小字体大小 */
+.markdown-section {
+  width: 80vw; /* 相对于视窗宽度的80% */
+  margin: 0 auto; /* 居中显示 */
+  font-size: min(1.2vw, 20px); /* 字体大小最小为1.2vw或16px，取其中较大者 */
+}
 /* 设置表格中的汉字为黑体 */
 .markdown-section table td, .markdown-section table th {
   font-family: 'Times New Roman', 'SimHei', sans-serif;
@@ -29,7 +37,7 @@ h1, h2, h3, h4, h5, h6 {
 .markdown-section pre {
     border: 1px solid #ccc;
     background-color: #f8f8f8;
-    padding: 10px;
+    padding: 12px;
     border-radius: 5px;
     font-family: 'Times New Roman', Times, serif;
     font-size: 14px;

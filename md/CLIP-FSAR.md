@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="custom.css">
+
 **CLIP-guided Prototype Modulating for Few-shot Action Recognition（IJCV在投）**
 
 # 模型结构图

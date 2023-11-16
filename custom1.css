@@ -1,12 +1,17 @@
 /* custom.css */
 
 /* 设置无序列表中的中文为黑体 */
+/* 设置页面内容宽度相对于视窗宽度，并保证最小字体大小 */
+/*.markdown-section {*/
+/*  width: 80vw; !* 相对于视窗宽度的80% *!*/
+/*  margin: 0 auto; !* 居中显示 *!*/
+/*  font-size: min(1.2vw, 20px); !* 字体大小最小为1.2vw或16px，取其中较大者 *!*/
+/*}*/
 ul li {
     font-family: 'Times New Roman', 'SimHei', sans-serif;
   }
-  
+
   /* 设置无序列表中的英文为 Times New Roman */
   ul li[lang="en"] {
     font-family: 'Times New Roman', Times, serif;
   }
-  

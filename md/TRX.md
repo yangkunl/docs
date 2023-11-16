@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="custom.css">
+
 **Temporal-Relational CrossTransformers for Few-Shot Action Recognition**
 
 # 模型结构图
@@ -37,6 +39,8 @@
   ```
 
 * 然后是通过两个线性层计算K,V,之后再计算其不同类别的分数(**拿query的K与support的K进行计算分数**),同时对获得的分数做了一个$Softmax$ 操作
+
+  
 
   ```python
   class_scores = torch.matmul(mh_queries_ks.unsqueeze(1), class_k.transpose(-2,-1)) / math.sqrt(self.args.trans_linear_out_dim)

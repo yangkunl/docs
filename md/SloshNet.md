@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="custom.css">
+
 ![\<img alt="" data-attachment-key="ESBSZRBU" width="860" height="299" src="attachments/ESBSZRBU.png" ztype="zimage">](attachments/ESBSZRBU.png)
 
 本文提出了一种称为SloshNet的少样本动作识别框架，其创新点在于将空间、长期时间和短期时间特征集成到一个统一的框架中。首先，通过特征融合架构搜索模块（FFAS），自动搜索不同情景下低级和高级空间特征的最佳融合结构，以增强空间特征的表示能力。其次，基于提取的空间外观特征，引入长期时间建模模块（LTMM）来建模全局时序关系。同时，设计了另一个短期时间建模模块（STMM），对相邻帧表示之间的运动特征进行编码，并探索长期和短期时间特征的最佳集成方式。对于类原型匹配器，采用了TRX方法进行帧级匹配，利用注意力机制将查询子序列与支持集中的所有子序列进行匹配并整合证据。\
