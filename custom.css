@@ -27,7 +27,7 @@ h1, h2, h3, h4, h5, h6 {
 .markdown-section {
   width: 80vw; /* 相对于视窗宽度的80% */
   margin: 0 auto; /* 居中显示 */
-  font-size: min(1.2vw, 20px); /* 字体大小最小为1.2vw或16px，取其中较大者 */
+  font-size: 18px; /* 字体大小最小为1.2vw或16px，取其中较大者 */
 }
 /* 设置表格中的汉字为黑体 */
 .markdown-section table td, .markdown-section table th {
@@ -40,7 +40,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 12px;
     border-radius: 5px;
     font-family: 'Times New Roman', Times, serif;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 1.5;
     overflow-x: auto; /* 添加水平滚动条 */
 }
