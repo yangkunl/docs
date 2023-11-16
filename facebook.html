@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>封面</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    #fb {
+      /*height、width 为puppeteer启动Chromium视口的默认宽高，不配置改变视口大小，这两个样式是不需要更改的，就是为了保证封面占首页整页的效果*/
+      width: 792px;
+      height: 1122px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /***********以上默认样式 适配pupperteer视口大小  一般情况不需要调整************/
+
+    /*****以下为封面内容的自定义样式*****/
+    .content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .content .title {
+      font-size: 48px;
+      font-weight: bold;
+    }
+
+    .content img {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="fb">
+    <!-- 自定义编辑content的内容 -->
+    <div class="content">
+      这是一个封面
+    </div>
+
+  </div>
+</body>
+
+</html>

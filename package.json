@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "docsify-pdf-converter": "^2.1.0-beta.0",
+    "easy-pdf-merge": "^0.2.6"
+  },
+  "name": "19475",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "convert":"C:\\Users\\19475\\node_modules\\.bin\\docsify-pdf-converter"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

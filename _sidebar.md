@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="custom1.css">
+
 * :pensive:**论文阅读**
     * [**阅读论文总览**](README.md)
     * :one:**视频理解(动作识别)**:
@@ -17,9 +19,8 @@
     * :five:**自监督**
         * [VideoMAE](md/VideoMAE.md)
 
-- :thinking:课程学习
-
-  - :one:统计学习导论
+- :thinking:**课程学习**
+  - :one:**统计学习导论**
     - [1.数学基础](study/1.Intro_Math.md)
     - [2.线性回归](study/2.LinearRegression.md)
     - [3.线性分类](study/3.LinearClassification.md)
@@ -27,11 +28,8 @@
     - [5.支持向量机](study/5.SVM.md)
     - [6.指数族分布](study/6.Exponentialfamily.md)
     - [7.概率图模型](study/7.PGMIntro.md)
-
-  - :two:动手学深度学习
-  
-  - :three:数据结构与算法
+  - **:two:动手学深度学习**
+  - **:three:数据结构与算法**
     - [数据结构与算法](others/数据结构与算法.md)
-  
-  - :four:Cpython
+  - **:four:Cpython**
     - [Cpython](others/python特性.md)

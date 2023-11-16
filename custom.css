@@ -1,0 +1,43 @@
+/* custom.css */
+
+/* Code block style */
+body {
+  font-family: '宋体', 'SimSun', sans-serif;
+}
+
+/* 设置英文字体为 Times New Roman */
+body p, body li, body pre, body code {
+  font-family: 'Times New Roman', Times, serif;
+}
+a {
+  text-decoration: none;
+}
+/* 设置行距为1.5倍 */
+body {
+  line-height: 1.5;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: '黑体', 'SimHei', sans-serif;
+  font-weight: bold;
+}
+
+/* 设置表格中的汉字为黑体 */
+.markdown-section table td, .markdown-section table th {
+  font-family: 'Times New Roman', 'SimHei', sans-serif;
+}
+
+.markdown-section pre {
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-x: auto; /* 添加水平滚动条 */
+}
+
+/* Remove the underline below each line in the code block */
+.markdown-section code {
+    border: none !important;
+}

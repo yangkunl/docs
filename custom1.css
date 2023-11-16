@@ -1,0 +1,12 @@
+/* custom.css */
+
+/* 设置无序列表中的中文为黑体 */
+ul li {
+    font-family: 'Times New Roman', 'SimHei', sans-serif;
+  }
+  
+  /* 设置无序列表中的英文为 Times New Roman */
+  ul li[lang="en"] {
+    font-family: 'Times New Roman', Times, serif;
+  }
+  

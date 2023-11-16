@@ -4,7 +4,7 @@
 
 ![\<img alt="" data-attachment-key="S7TW92QL" width="774" height="429" src="attachments/S7TW92QL.png" ztype="zimage">](attachments/S7TW92QL.png)
 
-视频理解领域的**参数高效微调**,通过**冻结**预训练的图像模型.只训练加入的一些轻量级的时空**Adapter,**引入了空间适应,时间适应,和联合适应使得图像模型具备时空推理的能力,更少的消耗和调整参数,获得更好的性能.
+视频理解领域的**参数高效微调**,通过**冻结**预训练的图像模型.只训练加入的一些轻量级的时空**Adapter**引入了空间适应,时间适应,和联合适应使得图像模型具备时空推理的能力,更少的消耗和调整参数,获得更好的性能.
 
 ## 创新点
 
@@ -19,7 +19,7 @@
 
     ![\<img alt="" data-attachment-key="9VJMLX4J" width="120" height="205" src="attachments/9VJMLX4J.png" ztype="zimage">](attachments/9VJMLX4J.png)
 
-*   时间**adapter**:(加入新的**tempoal moduale** 往往会引入新的非常多的额外可调参数.而且新的模块需要完全微调)因此重新使用图像模型中预先训练好的自注意层来进行时间建模**(T-MSA,就是预训练模型的自注意层与S-MSA没有区别)**.但是**对于输入自注意力层的特征进行了reshape**, 将  $z\in R^{T\times (N+1)\times D }$,reshape 为$z^T \in R^{N+1 \times T \times D}$,其中$N$是patch数,$T$是帧数,将其输入到T-MSA中.并且在T-MSA之后也加入了一个adapter,以适应视频数据的时间特征**(注意T-MSA和S-MSA都被冻住,不进行微调)**
+*   时间**adapter**:(加入新的**tempoal moduale** 往往会引入新的非常多的额外可调参数.而且新的模块需要完全微调)因此重新使用图像模型中预先训练好的自注意层来进行时间建模**\(T-MSA就是预训练模型的自注意层与S-MSA没有区别\)**.但是**对于输入自注意力层的特征进行了reshape**, 将  $z\in R^{T\times (N+1)\times D }$,reshape 为$z^T \in R^{N+1 \times T \times D}$,其中$N$是patch数,$T$是帧数,将其输入到T-MSA中.并且在T-MSA之后也加入了一个adapter,以适应视频数据的时间特征**\(注意T-MSA和S-MSA都被冻住,不进行微调\)**
 
 *   为了联合时空特征,引入joint adapter,结构与之前的adapter相同,**每一个时间,空间,联合输出的特征如下公式**:
 
@@ -29,7 +29,7 @@
 
 ![\<img alt="" data-attachment-key="68XP2N5X" width="473" height="126" src="attachments/68XP2N5X.png" ztype="zimage">](attachments/68XP2N5X.png)
 
-其中**$s$是缩放因子用于控制joint Adapter输出的权重**.
+其中$s$**是缩放因子用于控制joint Adapter输出的权重**.
 
 ## 实验设置
 
