@@ -8,6 +8,7 @@
 * :construction_worker:常用工具
   * [Github](https://github.com/)
   * [ MMAction视频理解工具](https://mmaction2.readthedocs.io/zh-cn/latest/get_started/overview.html)
+  * [模型可视化工具netron](https://netron.app/)）
 * :up:科研资源导航
   * [谷歌学术搜索](https://scholar.chongbuluo.com/)
   * [ccf-deadlines](https://ccfddl.github.io/)

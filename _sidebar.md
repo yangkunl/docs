@@ -3,6 +3,7 @@
 * :pensive:**论文阅读**
     * [**阅读论文总览**](README.md)
     * :one:**视频理解(动作识别)**:
+        * [VIM](md/VIM.md)
         * [CLIP-FSAR](md/CLIP-FSAR.md)
         * [SloshNet](md/SloshNet.md)
         * [FR_Head](md/FR_Head.md)
@@ -10,6 +11,7 @@
         * [AIM](md/AIM.md)
         * [TRX](md/TRX.md)
     * :two:**小样本学习**
+        * [VIM](md/VIM.md)
         * [CLIP-FSAR](md/CLIP-FSAR.md)
         * [SloshNet](md/SloshNet.md)
     * :three:**对比学习**

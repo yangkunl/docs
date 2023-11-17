@@ -233,3 +233,130 @@ with open('example.txt', 'r') as file:
 ```
 
 在这个例子中，`with` 语句确保在代码块执行完毕后文件被正确关闭，无需显式调用 `file.close()`。
+
+## Jit
+
+jit是numba库里面最核心最厉害的功能：我们知道，python是解释性语言，数据类型可以是动态地，带来了很多方便，但是速度也大大降低。而编译性语言，例如c/c++很快，所以jit就是用来编译python的，编译好处就是，可以对代码进行优化，从而加速。jit是一个修饰符decorator，作用对象是函数。即对函数进行编译优化，产生一个高效代码。
+
+```python
+from numba import jit
+```
+
+* 编译模式
+
+  * Lazy compilation
+
+    ```python
+    @jit
+    def f(x, y):
+    	return x + y
+    ```
+
+    用法：
+
+    ```python
+    f(1, 2)#整形
+    #3
+    f(1j, 2)#复数类型
+    #(2+1j)
+    ```
+
+    解释：jit会先让你的函数运行一次，摸清楚了传入的变量类型之后，针对这种变量类型进行优化。
+
+  * Eager compilation
+
+    ```python
+    from numba import jit, int32
+    @jit(int32(int32, int32))
+    def f(x, y):
+    	return x + y
+    ```
+
+    解释：第一种模式是让jit自己推断数据变量的类型，而这里是你自己指定，所以优化速度明显。
+
+    注意的是，像上面，指定了数据类型都是int32，如果你拿一些其他的数据类型来，将被强制转换数据类型，因此引来精度损失或者报错。
+
+- 编译选项
+
+  下面介绍如何继续提供更加精细化的控制。下面又有两个编译模式模式，nopython和object，前面章节是编译模式，是对一个东西（编译）的不同角度的分类。比如人可以分成高人矮人，胖子瘦子，角度不一样。
+
+  - nopython
+
+    这个模式，是被推荐的模式
+
+    ```python
+    @jit(nopython=True)
+    def f(x, y):
+        return x + y
+    ```
+
+    这段代码脱离了python解释器， 变成机器码来实现，所以速度超快
+
+    这个这么好，那么下面这个object模式还有什么意义呢？你错了，这个这么好是有前提的，需要你的函数代码是循环比较多，然后进行一些数学运算，这种代码在这个模式可以超级快。如果你的函数代码不是这种数学计算类的循环，比如下面这样：
+
+    ```python
+    def foo():
+    	A#非数学计算类。
+    	for i in range(1000):
+    		B#数学计算类。
+    	C#非数学计算类。
+    ```
+
+    这个模式将自动识别那个循环，然后优化，脱离python解释器，运行。而对于A,C这两个东西无法优化，需要切换回到python解释器，极其浪费时间，效果差。切换很费时间，这种情况，最好不要用nopython的模式，而使用下面地这种普通模式
+
+  - object
+
+​				普通模式，就是在python解释器里运行的模式。没有写nopython=True那么就默认是这个。
+
+​				从上面的描述来看，似乎已经透露了：循环，数学类的运算将大大优化，有一些代码不能优化。下面给个例子，什么东西				Numba喜欢，什么类型的代码numba不喜欢。
+
+```
+from numba import jit
+import numpy as np
+
+x = np.arange(100).reshape(10, 10)
+
+@jit(nopython=True) # Set "nopython" mode for best performance, equivalent to @njit
+def go_fast(a): # Function is compiled to machine code when called the first time
+    trace = 0.0
+    for i in range(a.shape[0]):   # Numba likes loops
+        trace += np.tanh(a[i, i]) # Numba likes NumPy functions
+    return a + trace              # Numba likes NumPy broadcasting
+
+print(go_fast(x))
+
+```
+
+不喜欢的就是那些numba看不懂的对象，例如你自己定义的对象object，或者一些库里面的对象，例如dataframe对象。也就是说numba喜欢搞数学有关的，以及那些基本数据类型（整形等）的运行，而对象这种东西太高级了。
+
+例如下面这个，jit加速没有用。
+
+```
+from numba import jit
+import pandas as pd
+
+x = {'a': [1, 2, 3], 'b': [20, 30, 40]}
+
+@jit
+def use_pandas(a): # Function will not benefit from Numba jit
+    df = pd.DataFrame.from_dict(a) # Numba doesn't know about pd.DataFrame
+    df += 1                        # Numba doesn't understand what this is
+    return df.cov()                # or this!
+
+print(use_pandas(x))
+
+```
+
+一个坑
+本人在使用时发现一个特别有意思的事，可能别人都不知道，算是一个告诉你的小秘密吧。那就是使用下面模式的时候
+
+```
+@jit(nopython=True)
+def foo():
+```
+
+我们知道，这个编译优化，然后运行的时候会脱离python解释器。这就导致了！！！！！！！！！！！！
+
+这一部分无法调试，你在函数内部打断点，没有用！！！！！！！！！
+
+所以，在你调试的时候，可以先把加速给关了，不要使用jit。
