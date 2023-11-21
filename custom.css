@@ -19,6 +19,7 @@ body {
   /*  zoom: 125%;*/
   line-height: 1.5;
 }
+
 h1, h2, h3, h4, h5, h6 {
   font-family: '黑体', 'SimHei', sans-serif;
   font-weight: bold;
@@ -33,7 +34,34 @@ h1, h2, h3, h4, h5, h6 {
 .markdown-section table td, .markdown-section table th {
   font-family: 'Times New Roman', 'SimHei', sans-serif;
 }
+/*.katex {*/
+/*    border: 1px solid #2bbd2b; !* 设置边框样式 *!*/
+/*    padding: 8px; !* 设置内边距 *!*/
+/*    margin: 8px 0; !* 设置外边距 *!*/
+/*    border-radius: 5px; !* 设置边框圆角 *!*/
+/*    box-shadow: 0 0 5px rgb(32, 29, 110); !* 设置阴影效果 *!*/
+/*}*/
+/* 调整 KaTeX 生成的公式的大小 */
 
+.katex-display {
+    font-size: 1em; /* 设置 displaystyle 的大小 */
+}
+
+.katex {
+    font-size: 1em; /* 设置默认大小 */
+}
+
+.katex-text {
+    font-size: 1em; /* 设置 textstyle 的大小 */
+}
+
+.katex-script {
+    font-size: 0.7em; /* 设置 scriptstyle 的大小 */
+}
+
+.katex-scriptscript {
+    font-size: 0.6em; /* 设置 scriptscriptstyle 的大小 */
+}
 .markdown-section pre {
     border: 1px solid #ccc;
     background-color: #f8f8f8;

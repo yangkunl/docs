@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="custom1.css">
 
-* :pensive:**论文阅读**
-    * [**阅读论文总览**](README.md)
-    * :one:**视频理解(动作识别)**:
+* 🌔**论文阅读**
+    * [**🔲阅读论文总览**](README.md)
+    * 🔳**视频理解(动作识别)**:
         * [VIM](md/VIM.md)
         * [CLIP-FSAR](md/CLIP-FSAR.md)
         * [SloshNet](md/SloshNet.md)
@@ -11,20 +11,20 @@
         * [AIM](md/AIM.md)
         * [TRX](md/TRX.md)
         * [HyRSM](md/HyRSM.md)
-    * :two:**小样本学习**
+    * 🔳**小样本学习**
         * [VIM](md/VIM.md)
         * [CLIP-FSAR](md/CLIP-FSAR.md)
         * [SloshNet](md/SloshNet.md)
         * [HyRSM](md/HyRSM.md)
-    * :three:**对比学习**
+    * 🔳**对比学习**
         * [SkeletonGCL](md/SkeletonGCL.md)
-    * :four:**多模态**
+    * 🔳**多模态**
         * [CLIP-FSAR](md/CLIP-FSAR.md)
-    * :five:**自监督**
+    * 🔳**自监督**
         * [VideoMAE](md/VideoMAE.md)
 
-- :thinking:**课程学习**
-  - :one:**统计学习导论**
+- 🌓**课程学习**
+  - 🔳**统计学习导论**
     - [1.数学基础](study/1.Intro_Math.md)
     - [2.线性回归](study/2.LinearRegression.md)
     - [3.线性分类](study/3.LinearClassification.md)
@@ -32,8 +32,7 @@
     - [5.支持向量机](study/5.SVM.md)
     - [6.指数族分布](study/6.Exponentialfamily.md)
     - [7.概率图模型](study/7.PGMIntro.md)
-  - **:two:动手学深度学习**
-  - **:three:数据结构与算法**
-    - [数据结构与算法](others/数据结构与算法.md)
-  - **:four:Cpython**
-    - [Cpython](others/python特性.md)
+  - 🔳**动手学深度学习**
+  - [**🔳数据结构与算法**](others/数据结构与算法.md)
+  - [🔳Cpython](others/python特性.md)
+

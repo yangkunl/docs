@@ -18,7 +18,7 @@
 
     将support video和Query video 输入到adaptivate sampling 自适应的采样T帧然后，使用特征提取器（即backbone）为每个视频生成特征表示。根据这些特征，**动作配准会在查询视频和支持视频之间进行配准**，从而为视频对生成配准良好的特征。最后，使用特定指标计算视频之间的关系（如距离、相似度）。
 
-*   Task-adaptive spatial-temporal video sampler
+* Task-adaptive spatial-temporal video sampler
 
     ![\<img alt="" data-attachment-key="9Q6PXBI8" width="1054" height="394" src="attachments/9Q6PXBI8.png" ztype="zimage">](attachments/9Q6PXBI8.png)
 
@@ -36,22 +36,36 @@
 
         *   differentiable的top-k算法
 
-    *   Spatial amplifier
+    * Spatial amplifier
 
         *   基于注意力的非均匀采样应用，使用了一种空间放大器（SA），
 
-        *   **Saliency map**，应该是将上述得到的frame-level级的特征输入到这个模块中，然后将该特征
+        * **Saliency map**，应该是将上述得到的frame-level级的特征输入到这个模块中，然后将该特征
 
-            $C \times H \times W$,在通道维度做（类似自注意力的机制），$α = \frac{f(X)f(X)^T}{\sqrt{h \times w}} \in R^{c×c}, f (X)′ = αf(X) \in R^{c×h×w} $,得到类似于注意力分数的东西，然后计算他的saliency map：$M_s \in R^{h\times w} = \frac{1}{c} \sum_i^c w_{s_i} \cdot f(x)'$,其中的$w_i$是一个可以学习的参数。
+            $C \times H \times W$,在通道维度做（类似自注意力的机制），
+            $$
+            α = \frac{f(X)f(X)^T}{\sqrt{h \times w}} \in R^{c×c}, f (X)′ = αf(X) \in R^{c×h×w}
+            $$
+            ,得到类似于注意力分数的东西，然后计算他的saliency map：
+            $$
+            M_s \in R^{h\times w} = \frac{1}{c} \sum_i^c w_{s_i} \cdot f(x)
+            $$
+            其中的$w_i$是一个可以学习的参数。
 
         *   Amplification：根据显著性地图，其空间采样规则是，**具有较大显著性值的区域应被赋予较大的采样概率**（即，在这种情况下，我们说该区域与其他区域相比将被 "放大"）。我们通过 中使用的反变换采样来实现上述放大过程。如图 5 所示，我们首先通过计算轴上的最大值，将显著性地图 Ms 分解为 x 维和 y 维，然后按照的方法进行稳定：
 
-            分解为x维，$M_x = \max\limits_{1\leq i\leq W}(M_s)_{i,j}$,$M_y = \max\limits_{1\leq i\leq H}(M_s)_{i,j}$
-
+            分解为x维，
+            $$
+            M_x = \max\limits_{1\leq i\leq W}(M_s)_{i,j} \quad ,\quad
+            
+            M_y = \max\limits_{1\leq i\leq H}(M_s)_{i,j}
+            $$
+            \
+            
             考虑非均匀且单调的累积分布函数，得到它们各自的分布，因此计算了反采样函数。最后根据网络对原始图像进行仿射变换，得到最终的放大图像
-
+            
             ![image-20231117191048297](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231117191048297.png)
-
+            
             ![image-20231117184918489](attachments\image-20231117184918489.png)
 
     *   Task-adaptive learner：在一般的动作识别中，一旦采样器训练有素，就会以固定的策略和标准对每个测试视频进行采样 [58,37]。然而，在少镜头插曲范例中，查询视频依赖于支持集中的视频来进行分类。因此，与一般的动作识别相比，我们的测试视频并不独立。因此，在少镜头识别中，固定每集视频的采样策略并不理想。为此，我们的采样器采用了任务自适应学习器，它能为 TS 和 SA 中的层生成特定任务参数，从而根据手头的情节任务动态调整采样策略。
@@ -85,10 +99,8 @@
 
 ​			  其中$W_k,W_q$是线性层，$G$是全局平均池化G 是空间维度上的全局平均池化，其输出张量形状为 C × T × 1 × 1，即只在时间维度上			  计算相关性，Softmax 将 $M_e$ 中的值限制为 [0, 1]。依照这个对query video进行重排$\tilde{F}_{q}=\mathbf{M}_{e} \cdot\left(W_{v} \cdot G\left(\hat{F}_{q}\right)\right)$。
 
-- 
+- Spatial Coordination
 
-  - Spatial Coordination
-
-    ![image-20231117195050503](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20231117195050503.png)
+  ![image-20231117195050503](attachments\image-20231117195050503.png)
 
 ​	
