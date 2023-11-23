@@ -11,11 +11,12 @@
         * [AIM](md/AIM.md)
         * [TRX](md/TRX.md)
         * [HyRSM](md/HyRSM.md)
+        * [TA2N](md/TA2N.md)
     * 🔳**小样本学习**
         * [VIM](md/VIM.md)
         * [CLIP-FSAR](md/CLIP-FSAR.md)
         * [SloshNet](md/SloshNet.md)
-        * [HyRSM](md/HyRSM.md)
+        * [TA2N](md/TA2N.md)
     * 🔳**对比学习**
         * [SkeletonGCL](md/SkeletonGCL.md)
     * 🔳**多模态**
