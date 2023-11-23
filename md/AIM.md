@@ -2,9 +2,9 @@
 
 # 模型结构图
 
-![\<img alt="" data-attachment-key="S7TW92QL" width="774" height="429" src="attachments/S7TW92QL.png" ztype="zimage">](attachments/S7TW92QL.png)
+![image-20231122111221269](attachments\image-20231122111221269.png)
 
-视频理解领域的**参数高效微调**,通过**冻结**预训练的图像模型.只训练加入的一些轻量级的时空**Adapter**引入了空间适应,时间适应,和联合适应使得图像模型具备时空推理的能力,更少的消耗和调整参数,获得更好的性能.
+在使用了图像领域预训练的模型,但是需要训练的参数很少。使用了**参数高效微调**的方法,通过**冻结**预训练的图像模型。只训练加入的一些轻量级的时空**Adapter**（两层全连接层）。引入了空间适应,时间适应,和联合适应使得图像模型具备时空推理的能力,更少的计算资源消耗和需要调整的参数,却能够获得更好的性能。
 
 ## 创新点
 
@@ -13,7 +13,7 @@
 *   冻住预训练的图像模型,只微调增加的时空适应层
 *   将加入的时空适应层(adapter)进行了组合,获得了更好的效果
 
-## **方法:**
+## **方法**
 
 *   如上图(**a**)空间adapter:是一种瓶颈架构,由两个全连接(FC)层和中间的激活层组成.第一个FC层将输入投射到较低的维度,第二个FC层将输入投射回原始维度.其加在**空间自注意力层(S-MSA,就是预训练模型的自注意层)**之后,称为空间适配.
 
@@ -27,12 +27,19 @@
     
     ![\<img alt="" data-attachment-key="UJY7ZQG4" width="214" height="387" src="attachments/UJY7ZQG4.png" ztype="zimage">](attachments/UJY7ZQG4.png)
 
-![\<img alt="" data-attachment-key="68XP2N5X" width="473" height="126" src="attachments/68XP2N5X.png" ztype="zimage">](attachments/68XP2N5X.png)
+$$
+\begin{array}{c}
+\boldsymbol{z}_{l}^{T}=\boldsymbol{z}_{l-1}+\operatorname{Adapter}\left(\mathrm{T}-\operatorname{MSA}\left(\operatorname{LN}\left(\boldsymbol{z}_{l-1}\right)\right)\right) \\
+\boldsymbol{z}_{l}^{S}=\boldsymbol{z}_{l}^{T}+\operatorname{Adapter}\left(\operatorname{S-MSA}\left(\operatorname{LN}\left(\boldsymbol{z}_{l}^{T}\right)\right)\right) \\
+\boldsymbol{z}_{l}=\boldsymbol{z}_{l}^{S}+\operatorname{MLP}\left(\operatorname{LN}\left(\boldsymbol{z}_{l}^{S}\right)\right)+s \cdot \operatorname{Adapter}\left(\operatorname{LN}\left(\boldsymbol{z}_{l}^{S}\right)\right)
+\end{array}
+$$
 
 其中$s$**是缩放因子用于控制joint Adapter输出的权重**.
 
 ## 实验设置
 
+* 其在4个数据集上做了benchmark(Kinetics-400, Kinetics-700, SSv, Diving-48)。
 * 消融实验,将冻住的纯空间,只训练分类头的模型(**线性探针**)作为baseline,然后是完全微调的空间模型,完全微调的时空模型,最后是本文的工作,分别讨论了只加spatial adaptation,在此基础上加tempoal adaptation, joint adaptation的结果.
 
 ![\<img alt="" data-attachment-key="QCY65GWL" width="842" height="185" src="attachments/QCY65GWL.png" ztype="zimage">](attachments/QCY65GWL.png)
