@@ -26,7 +26,7 @@
 
     *   Tempoal selector
 
-        *   Evaluation： evaluator $\phi _{eal}$*,可以得到视频的每一帧的重要性分数，其接收frame-level级的特征（$C \times M \times H \times W$）作为输入，得到$M$帧的重要性分数,同时输入的还有上面得到的视频全局特征*$g_X$，将这两个级别的特征concat起来，具体计算公式如下：
+        *   Evaluation： evaluator $\phi _{eal}$,可以得到视频的每一帧的重要性分数，其接收frame-level级的特征（$C \times M \times H \times W$）作为输入，得到$M$帧的重要性分数,同时输入的还有上面得到的视频全局特征$g_X$，将这两个级别的特征concat起来，具体计算公式如下：
 
             $s_i = \phi _{eval}(Avg(Cat(f (X_i), g_X))+ PE(i))$,$\phi_{eval} = w_2(ReLU(w_1(.))$,其中$i$是视频的某一帧。（为啥要一个视频的全局空间特征，时间评估器就是两层的全连接，Avg是空间上的全局平均池化，也就是将H X W变为1，PE 是位置编码）
 
@@ -54,11 +54,11 @@
 
             分解为x维:
             $$
-            M_x = \max\limits_{1\leq i\leq W}(M_s)_{i,j} \quad ,\quad
-            
-            M_y = \max\limits_{1\leq i\leq H}(M_s)_{i,j}
+            M_x = \max\limits_{1\leq i\leq W}(M_s)_{i,j} \quad M_y = \max\limits_{1\leq i\leq H}(M_s)_{i,j}
             $$
             考虑非均匀且单调的累积分布函数，得到它们各自的分布，因此计算了反采样函数。最后根据网络对原始图像进行仿射变换，得到最终的放大图像
+            
+            
             $$
             X^\prime_{i,j} = \mathrm{Func}(F,M_s,i,j) = X_{D_x^{-1}(i),D^{-1}_y(j)}
             $$
@@ -93,8 +93,7 @@
       $$
       \mathbf{M}_{e}=\operatorname{softmax}\left(\frac{\left(W_{k} \cdot G\left(\hat{F}_{s}\right)\right)\left(W_{q} \cdot G\left(\hat{F}_{q}\right)\right)^{T}}{\sqrt{\operatorname{dim}}}\right)
       $$
-
-​			  其中$W_k,W_q$是线性层，$G$是全局平均池化G 是空间维度上的全局平均池化，其输出张量形状为 C × T × 1 × 1，即只在时间维度上			  计算相关性，Softmax 将 $M_e$ 中的值限制为 [0, 1]。依照这个对query video进行重排$\tilde{F}_{q}=\mathbf{M}_{e} \cdot\left(W_{v} \cdot G\left(\hat{F}_{q}\right)\right)$。
+      其中$W_k,W_q$是线性层，$G$是全局平均池化G 是空间维度上的全局平均池化，其输出张量形状为 C × T × 1 × 1，即只在时间维度 计算相关性，Softmax 将 $M_e$ 中的值限制为 [0, 1]。依照这个对query video进行重排$\tilde{F}_{q}=\mathbf{M}_{e} \cdot\left(W_{v} \cdot G\left(\hat{F}_{q}\right)\right)$。
 
 - Spatial Coordination
 
