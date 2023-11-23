@@ -4,7 +4,7 @@
 
 <img src="_media\keda.png" alt="logo" style="zoom: 33%;" />
 
-# :registered:文献阅读笔记 <small>11月15日更新</small>
+# :registered:文献阅读笔记
 
 > :books:视频理解
 >
