@@ -6,7 +6,7 @@
 | ------------------------------------------------------------ | ------------------------------------------------ | ----------------------------------------------- | -------------------- |
 | TA2N: Two-Stage Action Alignment Network for Few-Shot Action Recognition | [AAAI2022](https://arxiv.org/pdf/2107.04782.pdf) | [GitHub](https://github.com/R00Kie-Liu/TA2N)    | [TA2N](md/TA2N.md)   |
 | M3Net: Multi-view Encoding, Matching, and Fusion for Few-shot Fine-grained Action Recognition | [MM2023](http://arxiv.org/abs/2308.03063)        | 无                                              | [M3Net](md/M3Net.md) |
-| FD-Align: Feature Discrimination Alignment for Fine-tuning Pre-Trained Models in Few-Shot Learning | [NeurIPS2023][http://arxiv.org/abs/2310.15105]   | [GitHub](https:// github.com/skingorz/FD-Align) |                      |
+| FD-Align: Feature Discrimination Alignment for Fine-tuning Pre-Trained Models in Few-Shot Learning | [NeurIPS2023](http://arxiv.org/abs/2310.15105)   | [GitHub](https:// github.com/skingorz/FD-Align) |                      |
 
 
 
