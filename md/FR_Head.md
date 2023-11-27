@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="custom.css">
+
 
 **Learning Discriminative Representations for Skeleton Based Action Recognition**（CVPR2023）
 

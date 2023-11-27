@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="custom.css">
-
 **VideoMAE: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training(NeurIPS 2022)**
 
 # 模型结构图
