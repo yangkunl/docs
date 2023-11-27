@@ -1,5 +1,3 @@
-
-
 **Temporal-Relational CrossTransformers for Few-Shot Action Recognition**
 
 # 模型结构图

@@ -1,5 +1,3 @@
-
-
 **Learning Discriminative Representations for Skeleton Based Action Recognition**（CVPR2023）
 
 # 模型结构图
