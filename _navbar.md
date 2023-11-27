@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="custom1.css">
-
 * :100:教程&课程
   * [动手学深度学习](https://space.bilibili.com/1567748478/channel/seriesdetail?sid=358497)
   * [机器学习公式推导](https://www.bilibili.com/video/BV1aE411o7qd/?spm_id_from=333.999.top_right_bar_window_default_collection.content.click&vd_source=6648f28bd4ed315352ef1ca819bc8e55)

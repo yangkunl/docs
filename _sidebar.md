@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="custom1.css">
-
 * 🌔**论文阅读**
     * [**🔲阅读论文总览**](README.md)
     * 🔳**视频理解(动作识别)**:
