@@ -2,7 +2,12 @@
 
 /* Code block style */
 /* night-mode.css */
-
+blockquote {
+  border-left: 4px solid #2173c7; /* 左侧边框颜色 */
+  padding-left: 10px; /* 左侧边框距离文本的距离 */
+  color: #cc2727; /* 引用文本颜色 */
+  background-color: #4f4040; /* 引用块的背景颜色 */
+}
 /* 在你的文档中添加滑动开关的 CSS 样式 */
 .switch {
   position: relative;
