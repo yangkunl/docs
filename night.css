@@ -100,7 +100,7 @@ body p, body li, body pre, body code {
   color: #f8f8f8;
 }
 a {
-  font-family: 'Times New Roman';
+  font-family: 'Times New Roman','Times New Roman','黑体', 'SimHei', sans-serif;;
   color: #0a84ff; /* 夜间模式的链接颜色 */
   text-decoration: none;
 }

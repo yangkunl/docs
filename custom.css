@@ -92,8 +92,11 @@ body {
 /* 设置英文字体为 Times New Roman */
 body p, body li, body pre, body code {
   font-family: 'Times New Roman', Times, serif;
+    color: black;
 }
 a {
+    font-family: 'Times New Roman','黑体', 'SimHei', sans-serif;
+  color: #7e45c5; /* 夜间模式的链接颜色 */
   text-decoration: none;
 }
 /* 设置行距为1.5倍 */
@@ -113,6 +116,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 80vw; /* 相对于视窗宽度的80% */
   margin: 0 auto; /* 居中显示 */
   font-size: 18px; /* 字体大小最小为1.2vw或16px，取其中较大者 */
+    color: black;
 }
 /* 设置表格中的汉字为黑体 */
 .markdown-section table td, .markdown-section table th {
@@ -155,6 +159,22 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 18px;
     line-height: 1.5;
     overflow-x: auto; /* 添加水平滚动条 */
+}
+.markdown-section table td, .markdown-section table th {
+  padding: 8px;
+  border: 1px solid #dddddd; /* 夜间模式的表格边框颜色 */
+}
+
+/* 奇数行的背景颜色 */
+.markdown-section table tr:nth-child(odd) {
+  font-family: 'Times New Roman';
+  background-color: #ffffff; /* 夜间模式的奇数行背景颜色 */
+}
+
+/* 偶数行的背景颜色 */
+.markdown-section table tr:nth-child(even) {
+  font-family: 'Times New Roman';
+  background-color: #f8f8f8; /* 夜间模式的偶数行背景颜色 */
 }
 
 /* Remove the underline below each line in the code block */
