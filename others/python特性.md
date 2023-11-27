@@ -153,6 +153,38 @@ expect: StopIteration as ret:
 
  ## 6.python生成器(generator)
 
+通过列表生成式我们可以直接创建一个列表。但是其受到内存限制,列表容量有限。而且,创建一个包含100万个元素的列表,不仅占用很大的空间,如果我们仅仅需要访问前面几个元素,那后面绝大多数元素占用的空间都浪费了。创建一个大容量列表有两种方式:
+
+- 一次性全部生成(好处:简单,明了,缺点:占用大量的内容)
+- 什么时候需要时候什么时候生成(生成器)
+
+使用生成器时,需要的个数不确定时候适合使用生成器,**生成器是一种特殊的迭代器,**
+
+- 创建生成器的方法1(直接将列表推导式的中括号改为小括号)
+
+  生成器是一种特殊的迭代器,因此可以使用next,也能用list改为列表对象
+
+  ```python
+  num2 = (x for x in range(5))
+  ```
+
+- 创建生成器的方式2(generator),可以用之前学习的函数来自己实现一个生成器
+
+  ```python
+  def fib_generator():
+      a = 1
+      b = 1
+      while True:
+          temo_a = a
+          a = b
+          b = temo_a + b
+          yield temo_a
+  ```
+
+  把return 改为 yield,如果有yield看似是调用函数其实是创建生成器
+
+使用生成器不用创建完整的列表,(列表元素由某个算法推断出来)
+
 生成器函数与生成器对象
 
 有yield关键词
@@ -1295,11 +1327,11 @@ asyncio.run(main())
   >
   >    ```python
   >    import asyncio
-  >             
+  >                
   >    async def main():
   >        await foo()
   >        await bar()
-  >             
+  >                
   >    loop = asyncio.get_event_loop()
   >    loop.run_until_complete(main())
   >    ```
