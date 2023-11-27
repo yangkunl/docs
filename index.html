@@ -12,7 +12,9 @@
   <!--<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/buble.css">-->
   <!--<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/dark.css">-->
   <!-- Add this to your HTML file, usually in your index.html -->
-  <link rel="stylesheet" href="custom.css">
+  <link rel="stylesheet" href="night.css" id="night-mode-stylesheet">
+  <link rel="stylesheet" href="custom.css" id="day-mode-stylesheet">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css">
 
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/prismjs/themes/prism.css">
@@ -106,6 +108,22 @@
       });
     });
   </script>
+  <script>
+  function toggleMode() {
+    const dayModeStylesheet = document.getElementById('day-mode-stylesheet');
+    const nightModeStylesheet = document.getElementById('night-mode-stylesheet');
+
+    if (dayModeStylesheet.disabled) {
+      // 切换到夜间模式
+      dayModeStylesheet.removeAttribute('disabled');
+      nightModeStylesheet.setAttribute('disabled', 'true');
+    } else {
+      // 切换到日间模式
+      dayModeStylesheet.setAttribute('disabled', 'true');
+      nightModeStylesheet.removeAttribute('disabled');
+    }
+  }
+</script>
 
   <!--在github上编辑  -->
 

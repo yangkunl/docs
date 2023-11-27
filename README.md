@@ -1,4 +1,11 @@
-# 论文阅读总览
+<!-- 在你的文档中添加滑动开关的 HTML 结构 -->
+<label class="switch">
+  <input type="checkbox" id="modeSwitch" onclick="toggleMode()">
+  <span class="slider round"></span>
+  <span class="label-text">模式:crescent_moon:/:sun_with_face:</span>
+</label>
+
+# <big>论文阅读总览</big>
 
 # 本周新读文献(11月23日)
 
@@ -6,7 +13,7 @@
 | ------------------------------------------------------------ | ------------------------------------------------ | ---------------------------------------------- | -------------------------- |
 | TA2N: Two-Stage Action Alignment Network for Few-Shot Action Recognition | [AAAI2022](https://arxiv.org/pdf/2107.04782.pdf) | [GitHub](https://github.com/R00Kie-Liu/TA2N)   | [TA2N](md/TA2N.md)         |
 | M3Net: Multi-view Encoding, Matching, and Fusion for Few-shot Fine-grained Action Recognition | [MM2023](http://arxiv.org/abs/2308.03063)        | 无                                             | [M3Net](md/M3Net.md)       |
-| FD-Align: Feature Discrimination Alignment for Fine-tuning Pre-Trained Models in Few-Shot Learning | [NeurIPS2023](http://arxiv.org/abs/2310.15105)   | [GitHub](https://github.com/skingorz/FD-Align) | [FD-Align](md/FD-ALign.md) |
+| FD-Align: Feature Discrimination Alignment for Fine-tuning Pre-Trained Models in Few-Shot Learning | [NeurIPS2023](http://arxiv.org/abs/2310.15105)   | [GitHub](https://github.com/skingorz/FD-Align) | [FD-Align](md/FD-Align.md) |
 
 # 文献仓库
 

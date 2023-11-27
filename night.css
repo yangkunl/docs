@@ -1,7 +1,7 @@
-/* custom.css */
+/* night-mode.css */
 
 /* Code block style */
-/* day-mode.css */
+/* night-mode.css */
 
 /* 在你的文档中添加滑动开关的 CSS 样式 */
 .switch {
@@ -24,7 +24,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #222; /* 夜间模式的背景颜色 */
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -36,17 +36,17 @@
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
+  background-color: #fff; /* 夜间模式的滑块颜色 */
   -webkit-transition: .4s;
   transition: .4s;
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #0a84ff; /* 夜间模式选中时的背景颜色 */
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #0a84ff; /* 夜间模式选中时的阴影效果 */
 }
 
 input:checked + .slider:before {
@@ -59,6 +59,10 @@ input:checked + .slider:before {
 .slider.round {
   border-radius: 34px;
 }
+
+.slider.round:before {
+  border-radius: 50%;
+}
 /* 在你的文档中添加 CSS 样式 */
 /* 在你的文档中添加 CSS 样式 */
 
@@ -69,7 +73,7 @@ input:checked + .slider:before {
   font-size: 20px;
   margin-left: 70px;
   margin-top: -25px;
-  color: #000000;
+  color: #ffffff; /* 修改字体颜色为白色 */
   font-family: 'Arial', sans-serif;
   font-weight: bold;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
@@ -82,18 +86,22 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 body {
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #333; /* 夜间模式的背景颜色 */
+
 }
-body {
-  font-family: '宋体', 'SimSun', sans-serif;
+h1, h2, h3, h4, h5, h6 {
+  font-family: '黑体', 'SimHei', sans-serif;
+  font-weight: bold;
 }
 
 /* 设置英文字体为 Times New Roman */
 body p, body li, body pre, body code {
   font-family: 'Times New Roman', Times, serif;
+  color: #f8f8f8;
 }
 a {
+  font-family: 'Times New Roman';
+  color: #0a84ff; /* 夜间模式的链接颜色 */
   text-decoration: none;
 }
 /* 设置行距为1.5倍 */
@@ -104,20 +112,36 @@ body {
   line-height: 1.5;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: '黑体', 'SimHei', sans-serif;
-  font-weight: bold;
-}
 /* 设置页面内容宽度相对于视窗宽度，并保证最小字体大小 */
 .markdown-section {
   width: 80vw; /* 相对于视窗宽度的80% */
   margin: 0 auto; /* 居中显示 */
   font-size: 18px; /* 字体大小最小为1.2vw或16px，取其中较大者 */
+    color: #e5d2d2;
 }
-/* 设置表格中的汉字为黑体 */
+/* 在夜间模式下调整表格行的样式 */
+.markdown-section table {
+  border-collapse: collapse; /* 合并边框样式 */
+  width: 100%;
+}
+
 .markdown-section table td, .markdown-section table th {
-  font-family: 'Times New Roman', 'SimHei', sans-serif;
+  padding: 8px;
+  border: 1px solid #555; /* 夜间模式的表格边框颜色 */
 }
+
+/* 奇数行的背景颜色 */
+.markdown-section table tr:nth-child(odd) {
+  font-family: 'Times New Roman';
+  background-color: #333; /* 夜间模式的奇数行背景颜色 */
+}
+
+/* 偶数行的背景颜色 */
+.markdown-section table tr:nth-child(even) {
+  font-family: 'Times New Roman';
+  background-color: #222; /* 夜间模式的偶数行背景颜色 */
+}
+
 /*.katex {*/
 /*    border: 1px solid #2bbd2b; !* 设置边框样式 *!*/
 /*    padding: 8px; !* 设置内边距 *!*/
@@ -146,9 +170,29 @@ h1, h2, h3, h4, h5, h6 {
 .katex-scriptscript {
     font-size: 0.6em; /* 设置 scriptscriptstyle 的大小 */
 }
+h1, h2, h3, h4, h5, h6 {
+  color: #fff !important; /* 夜间模式的标题颜色 */
+}
+/*.markdown-section pre {*/
+/*    border: 1px solid #555; !* 夜间模式的代码块边框颜色 *!*/
+/*    background-color: #333; !* 夜间模式的代码块背景颜色 *!*/
+/*    padding: 12px;*/
+/*    border-radius: 5px;*/
+/*    font-family: 'Times New Roman', Times, serif;*/
+/*    font-size: 18px;*/
+/*    line-height: 1.5;*/
+/*    color: #e5d2d2;;*/
+/*    overflow-x: auto; !* 添加水平滚动条 *!*/
+/*}*/
+
+/*!* Remove the underline below each line in the code block *!*/
+/*.markdown-section code {*/
+/*    border: none !important;*/
+/*    color: #fff; !* 夜间模式的代码文本颜色 *!*/
+/*}*/
 .markdown-section pre {
-    border: 1px solid #ccc;
-    background-color: #f8f8f8;
+    border: 1px solid #ffffff;
+    background-color: rgba(238, 221, 221, 0.1);
     padding: 12px;
     border-radius: 5px;
     font-family: 'Times New Roman', Times, serif;

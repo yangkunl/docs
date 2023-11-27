@@ -1,10 +1,10 @@
-# python
+# Python3核心编程
 
-## python代码执行
+## 1.python代码执行
 
-通过将python代码compile成bytecode,bytecode在c上进行执行.
+对于python这种脚本语言,其核心是运行在C上的虚拟机。因此在python执行过程中,首先解释器会将python代码变为字节码(bytecode),然后将bytecode在c上进行执行。详细内容可以参见python官网的文档:[python文档](https://docs.python.org/3/)
 
-## GIL(global interpret lock)
+## 2.GIL(global interpret lock)
 
 **线程**:是操作系统进行计算和调度的最小单位(可以理解为程序都是运行在线程里的)
 
@@ -23,7 +23,7 @@
 ​		常用的方法是**加锁**,加锁的意思是保证这段程序只有一个线程在运行,其他的线程不允许再运行.
 
 ```python
-#伪代码不能运行
+#这是伪代码不能实际执行
 a = 1
 lock.aquire()
 if a > 0;
@@ -31,7 +31,7 @@ if a > 0;
 lock.release()
 ```
 
-所有跟python object 有关的代码都有可能有这个问题,所以设计python 的设计者,给python设计一个全局的锁GIL
+由于python中'everything is object'的特性,导致代码都有可能有这个问题。所以设计python 的设计者,给python设计一个全局的锁GIL
 
 保证没有bytecode会被其他线程打断,线程会拿到GIL锁.
 
@@ -54,13 +54,15 @@ lock.release()
 from multiprocessing import Pool
 ```
 
-2. 自己写c extension
+2. 自己写c extension(例如 threading?)
 
 3. 没有GIL的python解释器:Jython 
 
-## python 描述器(descriptor)
+## 3.python 描述器(descriptor)
 
-只要**class**定义了任何一个` def __get__()` ` def __set__()` `def__delete__()`,都会把这个class变为descriptor.
+只要**class**定义了任何一个` def __get__()` ` def __set__()` `def__delete__()`,都会把这个class变为descriptor。描述器是Python中的一种强大特性,大量的机制是使用descriptor来完成的。其允许我们自定义属性的访问方式。
+
+所有的LOAD_ATTR
 
 ```python
 class Name:
@@ -77,7 +79,7 @@ print(A.name)
 
 描述器是属性 方法 静态方法 类方法 和 super()背后的实现机制
 
-## python 装饰器(decorator)
+## 4.python 装饰器(decorator)
 
 python中的所有东西都是object
 
@@ -121,13 +123,35 @@ print(add(2, 3))
 
 等价于`add = Timer(add)`,把一个函数变成了一个类的对象
 
- ## 迭代器
+ ## 5.python迭代器(Iterator)
 
-可迭代对象(iterable):一个对象可以一个一个返回他的成员(for loop 后面的 in的对象必须是一个iterable),要么有`__iter__`,要么是一个序列,有`__getitem__`这个方法(pytorch 中的dataset).
+目的:但在程序中一个自定义对象想放入for 循环中,而自定义的对象不是一个iterable,所以没办法放入for循环中,而在实际开发过程中,经常需要快速的将对象转化为其他不同的数据类型,此时如果能快速的遍历出自定义对象,将大大减少代码的冗余。因此需要迭代器。
 
-迭代器:一个表示数据流的对象,可以使用next获取新的数据,必须要有`__next__`这个方法.保证了在next方法下能取出数据
+什么是迭代:迭代是访问集合的一种方式
 
- ## 生成器
+- 可迭代对象:列表,元组,字典,字符串。查看是否是可迭代对象`frome collection.abc import Iterable `,`isinstance([],Iterable)`
+- 迭代器,迭代器是一个可以记住遍历位置的**对象**。迭代器对象从第一个元素开始访问,直到所有的元素被访问完结束。迭代器只能往前不会后退。
+
+使用`iter`得到迭代器,使用`next`取数据。如果迭代器中`next`已经将数据取完了,再使用`next`会出现StopIteration错误。但是在for 循环中不会出现Stoplteration,说明for循环中有异常处理,当出现for循环中退出循环。
+
+```python
+try:
+	num5 = next(nums_iter)
+	print(num5)
+expect: StopIteration as ret:
+	print(ret)	
+```
+
+- 使用魔术方法将一个对象变为可迭代对象,使用`__iter__`,`__next__`方法。
+
+拥有`__iter__`方法的类一定是可迭代对象,使用`__next__`使得类变为迭代器(同时拥有`__iter__`,`__next__`),使用buildin 函数 iter()对一个类的对象,会自动调用这个类的`__iter__`方法。使用buildin 函数 next()对一个类的对象,会自动调用这个类的`__next__`方法。
+
+注意`__getitime__`是生成序列,但是类中有这个方法的,往往也被视为可迭代对象
+
+- 不是只有for会调用可迭代对象,list,tuple都会调用可迭代对象
+
+
+ ## 6.python生成器(generator)
 
 生成器函数与生成器对象
 
@@ -138,57 +162,6 @@ print(add(2, 3))
 对生成器函数使用code
 
 返回num
-
-## def \__call__(self)
-
-在 Python 中，`__call__` 方法是一种特殊的方法，用于使对象实例可以像函数一样被调用。当你在一个类中定义了 `__call__` 方法时，该类的实例可以被当作函数来调用，就像调用普通的函数一样。
-
-对于一个类，定义了 `__call__` 方法后，当你创建该类的实例并调用它时，实际上是在调用 `__call__` 方法。这允许对象实例表现得像一个函数，提供了一种自定义的可调用行为。
-
-例如，如果你有一个类定义如下：
-
-```python
-class MyCallableClass:
-    def __call__(self, arg):
-        print(f"Calling with argument: {arg}")
-```
-
-然后你可以创建该类的实例，并像调用函数一样调用它：
-
-```python
-my_instance = MyCallableClass()
-my_instance("Hello")
-```
-
-上面的代码会输出：
-
-```
-Calling with argument: Hello
-```
-
-在深度学习中，`__call__` 方法常常被用于定义一个可调用的网络层或模型，使得该层或模型的实例可以像函数一样处理输入。这样，模型的使用就变得更加自然和灵活。例如，一个可以处理视频剪辑（clip）的类可能会定义 `__call__` 方法来处理这个视频剪辑。
-
-```python
-class VideoProcessor:
-    def __call__(self, clip):
-        # 处理视频剪辑的逻辑
-        processed_clip = clip + " (processed)"
-        return processed_clip
-```
-
-然后，你可以创建 `VideoProcessor` 的实例并调用它来处理视频剪辑：
-
-```python
-processor = VideoProcessor()
-result = processor("VideoClip1")
-print(result)
-```
-
-这样的设计可以使得代码更加清晰，使得模型或处理逻辑可以以一种更自然的方式被调用。
-
-## isinstance()
-
-检查是否为同一类别
 
 
 
@@ -489,6 +462,92 @@ package可以有其他的subpackage,module.
 ## python中的mutable和immutable
 
 python是不知道什么东西是mutable和immutable的,immutable的internal state是不能被改变的,python对immutable和mutable写的函数
+
+## python中实现注册机制 Registry
+
+先看代码
+
+```python
+# Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved
+class Registry(object):
+
+    def __init__(self, name):
+        """
+        Args:
+            name (str): the name of this registry
+        """
+        #给注册机取个名
+        self._name = name
+        #这个字典建立了函数名或类名到相应的函数或类之间的映射
+        self._obj_map = {}
+  
+    #这个函数是将函数和类注册到这个字典中
+    def _do_register(self, name, obj):
+        #如果字典里面原本就存在你要注册的函数或类，就会报错
+        assert (name not in self._obj_map), "An object named '{}' was already registered in '{}'
+            registry!".format(name, self._name)
+       
+        self._obj_map[name] = obj
+    
+    
+    def register(self, obj=None):
+        """
+        Register the given object under the the name `obj.__name__`.
+        Can be used as either a decorator or not. See docstring of 
+        this class for usage.
+        """
+        #如果注册机对象调用这个方法没有给定函数和类作变量，就是None，此时
+        就会返回一个注册的函数，可以用它装饰在其它函数或类上面，注册其他函数或类
+        if obj is None:
+            # used as a decorator
+            def deco(func_or_class):
+                #函数和类.__name__返回的是函数名和类名的字符串
+                name = func_or_class.__name__
+                self._do_register(name, func_or_class)
+                return func_or_class
+
+            return deco
+
+        # used as a function call
+        name = obj.__name__
+        self._do_register(name, obj)
+
+    def get(self, name):
+        注册一些函数或者类之后，通过这个方法就可以返回我们需要的函数或类
+        ret = self._obj_map.get(name)
+        if ret is None:
+            raise KeyError("No object named '{}' found in '{}' registry!".format(name, self._name))
+        return ret
+```
+
+使用这个进行测试:
+
+```python
+registry_machine = Registry('registry_machine')
+
+@registry_machine.register()
+def print_hello_world(word):
+    print('hello {}'.format(word))
+@registry_machine.register()
+def print_hi_world(word):
+    print('hi {}'.format(word))
+
+if __name__ == '__main__':
+
+    cfg1 = 'print_hello_world'
+    registry_machine.get(cfg1)('world')
+
+    cfg2 = 'print_hi_world'
+    registry_machine.get(cfg2)('world')
+
+输出结果：
+hello world
+hi world
+{'print_hello_world': <function print_hello_world at 0x7f3613f85320>, 
+'print_hi_world': <function print_hi_world at 0x7f3613f85f80>}
+```
+
+可以看到其实就是使用了python 中装饰器这个语法糖,将函数或者类注册进Registry 对象的字典中,再通过字典的get方法拿到这个函数或者类,由此可以方便的调用这个函数或者类。
 
 # python buildin 函数
 
@@ -1015,6 +1074,53 @@ print(child.age)   # 输出 5
 
 - 特点:method的名字,前后都有两个下划线
 
+## def \__call__(self)
+
+在 Python 中，`__call__` 方法是一种特殊的方法，用于使对象实例可以像函数一样被调用。当你在一个类中定义了 `__call__` 方法时，该类的实例可以被当作函数来调用，就像调用普通的函数一样。
+
+对于一个类，定义了 `__call__` 方法后，当你创建该类的实例并调用它时，实际上是在调用 `__call__` 方法。这允许对象实例表现得像一个函数，提供了一种自定义的可调用行为。
+
+例如，如果你有一个类定义如下：
+
+```python
+class MyCallableClass:
+    def __call__(self, arg):
+        print(f"Calling with argument: {arg}")
+```
+
+然后你可以创建该类的实例，并像调用函数一样调用它：
+
+```python
+my_instance = MyCallableClass()
+my_instance("Hello")
+```
+
+上面的代码会输出：
+
+```
+Calling with argument: Hello
+```
+
+在深度学习中，`__call__` 方法常常被用于定义一个可调用的网络层或模型，使得该层或模型的实例可以像函数一样处理输入。这样，模型的使用就变得更加自然和灵活。例如，一个可以处理视频剪辑（clip）的类可能会定义 `__call__` 方法来处理这个视频剪辑。
+
+```python
+class VideoProcessor:
+    def __call__(self, clip):
+        # 处理视频剪辑的逻辑
+        processed_clip = clip + " (processed)"
+        return processed_clip
+```
+
+然后，你可以创建 `VideoProcessor` 的实例并调用它来处理视频剪辑：
+
+```python
+processor = VideoProcessor()
+result = processor("VideoClip1")
+print(result)
+```
+
+这样的设计可以使得代码更加清晰，使得模型或处理逻辑可以以一种更自然的方式被调用。
+
 ## def \_\_new_\_(cls): 和 def \_\_init\_\_(self):
 
 这两个方法可以改变从一个类建立一个对象的时候的行为
@@ -1187,11 +1293,11 @@ asyncio.run(main())
   >
   >    ```python
   >    import asyncio
-  >          
+  >             
   >    async def main():
   >        await foo()
   >        await bar()
-  >          
+  >             
   >    loop = asyncio.get_event_loop()
   >    loop.run_until_complete(main())
   >    ```
