@@ -2,6 +2,11 @@
 
 /* Code block style */
 /* day-mode.css */
+
+strong {
+  font-weight: bold;
+  font-family: '黑体', sans-serif; /* '黑体' 为黑体字体，也可以选择其他合适的字体 */
+}
 blockquote {
   border-left: 4px solid #0b243d; /* 左侧边框颜色 */
   padding-left: 10px; /* 左侧边框距离文本的距离 */
@@ -156,14 +161,28 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.6em; /* 设置 scriptscriptstyle 的大小 */
 }
 .markdown-section pre {
+    position: relative;
+    z-index: 1;
     border: 1px solid #ccc;
     background-color: #f8f8f8;
     padding: 12px;
     border-radius: 5px;
     font-family: 'Times New Roman', Times, serif;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.5;
     overflow-x: auto; /* 添加水平滚动条 */
+}
+.markdown-section .clipboard {
+    position: absolute;
+    top: 8px; /* 调整按钮距离顶部的距离 */
+    right: 8px; /* 调整按钮距离右侧的距离 */
+    cursor: pointer;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    z-index: 2; /* 将按钮的 z-index 设置为比代码块更高，确保按钮位于代码块上方 */
 }
 .markdown-section table td, .markdown-section table th {
   padding: 8px;

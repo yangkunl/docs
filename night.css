@@ -2,6 +2,10 @@
 
 /* Code block style */
 /* night-mode.css */
+strong {
+  font-weight: bold;
+  font-family: '黑体', sans-serif; /* '黑体' 为黑体字体，也可以选择其他合适的字体 */
+}
 blockquote {
   border-left: 4px solid #2173c7; /* 左侧边框颜色 */
   padding-left: 10px; /* 左侧边框距离文本的距离 */

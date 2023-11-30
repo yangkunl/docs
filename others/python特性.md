@@ -81,7 +81,15 @@ print(A.name)
 
 ## 4.python 装饰器(decorator)
 
+不修改原函数,只是在上完成特殊效果,
+
+其前置知识是闭包和引用
+
+>b=a的引用不是b指向a,而是把b也指向a所指向的东西,闭包是一个嵌套定义函数,且内部函数要使用外部函数的引用
+
 python中的所有东西都是object
+
+装饰器看上去是在定义函数的前面写上了一个@xxxx,但实际功能是
 
 ```python
 def dec(f):
@@ -181,21 +189,100 @@ expect: StopIteration as ret:
           yield temo_a
   ```
 
-  把return 改为 yield,如果有yield看似是调用函数其实是创建生成器
+  把return 改为 yield,如果有yield看似是调用函数,**其实是创建生成器**,`ie:f1 = fib_generator()`,其中`f1`是一个生成器。
+  
+  调用生成器的方法有两个`next`和`send`:
+  
+  - 其中`next`就相当于是调用迭代器的时候,不过与之不同的是,第一次使用`next`时,代码会从头开始执行,在执行到`yield`时暂停执行,同时把`yield`后面的值作为返回值返回（类似于return）。如果`next`数超过了`yield`数,就会产生异常`StopIteration`(类似于迭代器)。
+  
+  - 如果不是第一次 执行,则从上一次暂停的位置执行(即从上一次`yield`关键字的下一个语句开始执行),直到遇到下一次`yield`为主,并且将`yield`关键值后的数值返回。
+  - 如果函数中既有return 也有 yield，如果使用`next`的时候`return`前面没有`yield`,那么就会产生异常`StopIteration`,同时会将`return`返回的值作为异常值返回,使用python的异常处理机制可以拿到return返回的值
+  - `send`基本上与next相似,但是其可以向生成器中传入值,注意第一次使用时,如果前面没有`next`那么需要传入`None`而不是一个实值,原因是`send`为上一次`yield`的语句赋值,而在第一次使用`send`时,没有上一次执行的`yield`,所以不能传入实值,否则会报错,因此如果前面有使用`next`就不需要了。
 
-使用生成器不用创建完整的列表,(列表元素由某个算法推断出来)
+用例展示:
 
-生成器函数与生成器对象
+```python
+def create_point():
+    x = 0
+    k = 2
+    b = 1
+    while True:
+        y = k * x + b
+        temp = yield x, y
+        if temp:
+            k, b = temp
+        x = y
 
-有yield关键词
 
-调用生成器函数会返回一个生成器对象
+f = create_point()
+print(next(f))
 
-对生成器函数使用code
+print(f.send((3,2)))
+print(next(f))
+```
 
-返回num
+
 
 ## 7.python正则表达式
+
+## 8.python闭包
+
+一个函数里面又嵌套定义了另外一个函数,**里面那个函数使用了外部函数的局部变量**,(里面的函数必须要使用外面的变量,否则不是闭包)这就是闭包。
+
+```python
+def person(name):
+	def say(content):
+		print("(%s):%s"%(name, content))
+	return say
+```
+
+- 引用:
+
+  ```
+  a = [11, 22, 33]
+  b = a
+  a.append(44)
+  print(a)
+  print(b)
+  ```
+
+  会发现这两个打印的值一样
+
+  ```
+  def xx(temp);
+  	print(temp)
+  	temp.append(44)
+  	print(temp)
+  nums = [100, 200]
+  xx(nums)
+  print(nums)
+  ```
+
+  正常来说调用一个函数的时候,这个函数的所有的局部变量和形参都只会在这个函数执行的时候的过程中才会被保留,只要这个函数执行完毕,那么这些局部变量+形参 就会被自动释放,也就说没有了
+  
+  闭包比普通函数强大的地方在于其在外部函数执行完毕之后,这个外部函数中的所有局部变量加形参,都不会被释放,以便于在调用内部函数的时候可以使用
+  
+  - 好处:将局部变量永久存储
+  - 坏处:占用内存
+
+记得最后要释放内存。删掉引用`del xx`。
+
+使用闭包的注意点:
+
+- 由于闭包(里面函数)会携带包含它的函数（外面函数）的作用域,因此会比其他函数占用更多的内存,因此可以手动解除对匿名函数的引用,以释放内存.
+
+  ```
+  ```
+
+  
+
+- 修改外部函数的变量,`nolocal`,添加这个关键词可以使用闭包修改外部函数的变量,否则会产生异常
+
+- 多个闭包之间没有任何关系
+
+- 闭包与对象的关系,对象:可以由N个属性+N个方法组成,闭包:可以由N个变量+1个函数组成(可以有N个,但是一般只写一个)
+
+- 如果将闭包当实参传入函数中,意味着将功能和数据都传入了 
 
 
 
@@ -1327,11 +1414,11 @@ asyncio.run(main())
   >
   >    ```python
   >    import asyncio
-  >                
+  >                      
   >    async def main():
   >        await foo()
   >        await bar()
-  >                
+  >                      
   >    loop = asyncio.get_event_loop()
   >    loop.run_until_complete(main())
   >    ```

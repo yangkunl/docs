@@ -7,13 +7,14 @@
 
 # <big>论文阅读总览</big>
 
-# 本周新读文献(11月23日)
+# 本周新读文献(11月30日)
 
-| 文章名称                                                     | PDF                                              | 代码                                           | 笔记                       |
-| ------------------------------------------------------------ | ------------------------------------------------ | ---------------------------------------------- | -------------------------- |
-| TA2N: Two-Stage Action Alignment Network for Few-Shot Action Recognition | [AAAI2022](https://arxiv.org/pdf/2107.04782.pdf) | [GitHub](https://github.com/R00Kie-Liu/TA2N)   | [TA2N](md/TA2N.md)         |
-| M3Net: Multi-view Encoding, Matching, and Fusion for Few-shot Fine-grained Action Recognition | [MM2023](http://arxiv.org/abs/2308.03063)        | 无                                             | [M3Net](md/M3Net.md)       |
-| FD-Align: Feature Discrimination Alignment for Fine-tuning Pre-Trained Models in Few-Shot Learning | [NeurIPS2023](http://arxiv.org/abs/2310.15105)   | [GitHub](https://github.com/skingorz/FD-Align) | [FD-Align](md/FD-Align.md) |
+| 文章名称                                                     | PDF                                                          | 代码                                           | 笔记                       |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ---------------------------------------------- | -------------------------- |
+| TA2N: Two-Stage Action Alignment Network for Few-Shot Action Recognition | [AAAI2022](https://arxiv.org/pdf/2107.04782.pdf)             | [GitHub](https://github.com/R00Kie-Liu/TA2N)   | [TA2N](md/TA2N.md)         |
+| M3Net: Multi-view Encoding, Matching, and Fusion for Few-shot Fine-grained Action Recognition | [MM2023](http://arxiv.org/abs/2308.03063)                    | 无                                             | [M3Net](md/M3Net.md)       |
+| FD-Align: Feature Discrimination Alignment for Fine-tuning Pre-Trained Models in Few-Shot Learning | [NeurIPS2023](http://arxiv.org/abs/2310.15105)               | [GitHub](https://github.com/skingorz/FD-Align) | [FD-Align](md/FD-Align.md) |
+| Boosting Few-shot Action Recognition with Graph-guided Hybrid Matching | [ICCV2023](http://openaccess.thecvf.com/content/ICCV2023/html/Xing_Boosting_Few-shot_Action_Recognition_with_Graph-guided_Hybrid_Matching_ICCV_2023_paper.html) | 无                                             | [GgHM](md/GgHM.md)         |
 
 # 文献仓库
 
@@ -31,6 +32,7 @@
 | Hybrid Relation Guided Set Matching for Few-shot Action Recognition | [CVPR2022](http://arxiv.org/abs/2204.13423)                  | [GitHub](https://hyrsm-cvpr2022.github.io/)                  | [HyRSM](md/HyRSM.md)             |   2023.11.17   |          |
 | TA2N: Two-Stage Action Alignment Network for Few-Shot Action Recognition | [AAAI2022](https://arxiv.org/pdf/2107.04782.pdf)             | [GitHub](https://github.com/R00Kie-Liu/TA2N)                 | [TA2N](md/TA2N.md)               |   2023.11.22   |          |
 | M3Net: Multi-view Encoding, Matching, and Fusion for Few-shot Fine-grained Action Recognition | [MM2023](http://arxiv.org/abs/2308.03063)                    | 无                                                           | [M3Net](md/M3Net.md)             |   2023.11.24   |          |
+| Boosting Few-shot Action Recognition with Graph-guided Hybrid Matching | [ICCV2023](http://openaccess.thecvf.com/content/ICCV2023/html/Xing_Boosting_Few-shot_Action_Recognition_with_Graph-guided_Hybrid_Matching_ICCV_2023_paper.html) | 无                                                           | [GgHM](md/GgHM.md)               |   2023.11.30   |          |
 
 - **小样本学习**
 
@@ -42,6 +44,7 @@
 | Hybrid Relation Guided Set Matching for Few-shot Action Recognition | [CVPR2022](http://arxiv.org/abs/2204.13423)                  | [GitHub](https://hyrsm-cvpr2022.github.io/)                  | [HyRSM](md/HyRSM.md)         | 2023.11.17     |          |
 | TA2N: Two-Stage Action Alignment Network for Few-Shot Action Recognition | [AAAI2022](https://arxiv.org/pdf/2107.04782.pdf)             | [GitHub](https://github.com/R00Kie-Liu/TA2N)                 | [TA2N](md/TA2N.md)           | 2023.11.22     |          |
 | FD-Align: Feature Discrimination Alignment for Fine-tuning Pre-Trained Models in Few-Shot Learning | [NeurIPS2023](http://arxiv.org/abs/2310.15105)               | [GitHub](https://github.com/skingorz/FD-Align)               | [FD-Align](md/FD-ALign.md)   | 2023.11.25     |          |
+| Boosting Few-shot Action Recognition with Graph-guided Hybrid Matching | [ICCV2023](http://openaccess.thecvf.com/content/ICCV2023/html/Xing_Boosting_Few-shot_Action_Recognition_with_Graph-guided_Hybrid_Matching_ICCV_2023_paper.html) | 无                                                           | [GgHM](md/GgHM.md)           | 2023.11.30     |          |
 
 - **多模态**
 
