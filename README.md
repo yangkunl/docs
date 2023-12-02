@@ -66,3 +66,18 @@
 | ------------------------------------------------------------ | ---------------------------------------------- | --------------------------------------------- | -------------------------- | --------- | -------- |
 | VideoMAE: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training | [NeurIPS2022](http://arxiv.org/abs/2203.12602) | [Github](https://github.com/MCG-NJU/VideoMAE) | [VideoMAE](md/VideoMAE.md) | 2023.11.9 |          |
 
+  <script src="https://giscus.app/client.js"
+        data-repo="yangkunl/docs"
+        data-repo-id="R_kgDOKp-UpQ"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOKp-Upc4CbcZJ"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+  </script>
