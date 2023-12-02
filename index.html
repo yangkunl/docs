@@ -5,16 +5,17 @@
   <title>Kunlin Yang</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <!-- 主题 -->
-  <!--  https://docsify-darklight-theme.boopathikumar.me/#/installation-->
-  <!--https://osiris-ui.github.io/osiris/#/quick-start-->
-  <!--<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/buble.css">-->
-  <!--<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/dark.css">-->
-  <!-- Add this to your HTML file, usually in your index.html -->
+  <link rel="shortcut icon" href="/_media/log2.png">
+  <style>
+      body:not(.ready) {
+        overflow: auto;
+      }
+      .giscus iframe {
+        border: none;
+      }
+    </style>
   <link rel="stylesheet" href="night.css" id="night-mode-stylesheet">
   <link rel="stylesheet" href="custom.css" id="day-mode-stylesheet">
-  <link rel="stylesheet" href="//unpkg.com/mermaid/dist/mermaid.min.css" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css">
 
@@ -22,13 +23,9 @@
 
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/pure.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" />
-<!--  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/buble.css">-->
-  <!-- 公式 -->
-<!--  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" />-->
-  <!--  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">-->
 </head>
 <body>
-  <div id="app">加载中</div>
+  <div id="app">🏃‍🏃‍🏃‍💨加载中</div>
   <script>
     // var num = 0;
     // mermaid.initialize({ startOnLoad: false });
@@ -56,28 +53,57 @@
                     return '<figure>' + image_html + '<figcaption>'  +
                         '</figcaption></figure>'
                 },
-            //   code: function(code, lang) {
-            //         if (lang === "mermaid") {
-            //         return (
-            //           '<div class="mermaid">' + mermaid.render('mermaid-svg-' + num++, code) + "</div>"
-            //         );
-            //      }
-            //       return this.origin.code.apply(this, arguments);
-            // }
         }},
+      plugins:[function (hook, vm) {
+               hook.doneEach(function () {
+              var path = vm.route.path === "/" ? "/index" : vm.route.path;
+              // remove first '/'
+              path = path.substr(1);
 
-        plugins: [
-              function (hook, vm) {
-              hook.ready(function () {
-              mermaid.initialize({ startOnLoad: false });
-              });
-              hook.doneEach(function () {
-              mermaid.init(undefined, '.mermaid');
-             });
-         }
+              // console.log(path);
+              // convert url to plain text
+              path = decodeURI(path);
+              console.log(path);
+
+              // console.log(path_split);
+              // console.log(last_item);
+
+              var theme =
+                getComputedStyle(document.body).getPropertyValue(
+                  "--toogleBackground"
+                ) === "#ffffff"
+                  ? "dark"
+                  : "light";
+
+              // console.log(theme);
+
+              var dsq = document.createElement("script");
+              dsq.type = "text/javascript";
+              dsq.async = true;
+              dsq.setAttribute("src", "https://giscus.app/client.js");
+              dsq.setAttribute("data-repo", "yangkunl/docs");
+              dsq.setAttribute("data-repo-id", "R_kgDOKp-UpQ");
+              dsq.setAttribute("data-category", "Announcements");
+              dsq.setAttribute("data-category-id", "DIC_kwDOKp-Upc4CbcZJ");
+              dsq.setAttribute("data-mapping", "specific");
+              dsq.setAttribute("data-term", path);
+              dsq.setAttribute("data-reactions-enabled", "1");
+              dsq.setAttribute("data-emit-metadata", "0");
+              dsq.setAttribute("data-input-position", "bottom");
+              dsq.setAttribute("data-theme", theme);
+              dsq.setAttribute("data-lang", "zh-CN");
+              dsq.setAttribute("data-loading", "lazy");
+              dsq.setAttribute("crossorigin", "anonymous");
+              // remove last iframe border
+              var iframes = document.getElementsByTagName("iframe");
+              // console.log(iframes);
+              // iframes[iframes.length - 1].style.border = "none";
+              // append to last second
+              document
+                .getElementById("main")
+                .insertBefore(dsq, document.getElementById("main").lastChild);
+            });}
       ],
-
-
       search: {
         maxAge: 86400000,
         paths: 'auto',
@@ -111,22 +137,8 @@
       },
     }
   </script>
-  <style>
-  figure {
-      text-align: center
-  }
-</style>
   <!-- Your Markdown file -->
 <!-- Include this script to initialize clipboard.js -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var clipboard = new ClipboardJS('.copy-button');
-
-      clipboard.on('success', function (e) {
-        e.clearSelection();
-      });
-    });
-  </script>
   <script>
   function toggleMode() {
     const dayModeStylesheet = document.getElementById('day-mode-stylesheet');
@@ -142,32 +154,9 @@
       nightModeStylesheet.removeAttribute('disabled');
     }
   }
-</script>
-
-  <!--在github上编辑  -->
-
-<!--  <script src="plugins/search.js"></script>-->
-
-<!--  <script src="plugins/hightlight.js"></script>-->
-<!--  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>-->
-<!--  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>-->
-  <!-- Add this to your HTML file, usually in your index.html or main.js -->
-  <script src="https://giscus.app/client.js"
-        data-repo="yangkunl/docs"
-        data-repo-id="R_kgDOKp-UpQ"
-        data-category="Announcements"
-        data-category-id="DIC_kwDOKp-Upc4CbcZJ"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="preferred_color_scheme"
-        data-lang="zh-CN"
-        crossorigin="anonymous"
-        async>
   </script>
-  <script src="//unpkg.com/docsify@latest/docsify.min.js"></script>
+
+
   <script src="//cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
   <script type="text/javascript" src="//unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
@@ -197,8 +186,6 @@
   <!-- 搜索插件 -->
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <!-- 代码高亮 -->
-<!--  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>-->
-<!--  <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>-->
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-c.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
