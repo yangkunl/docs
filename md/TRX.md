@@ -29,11 +29,9 @@
     Q_p=\left[\Phi\left(q_{p_1}\right)+\operatorname{PE}\left(p_1\right), \Phi\left(q_{p_2}\right)+\operatorname{PE}\left(p_2\right)\right] \in \mathbb{R}^{2 \times D} \\
     S^c_{km}=\left[\Phi\left(s^c_{km_1}\right)+\operatorname{PE}\left(m_1\right), \Phi\left(S^c_{km_2}\right)+\operatorname{PE}\left(m_2\right)\right] \in \mathbb{R}^{2 \times D}
     $$
-    
-
     其中$m \in \Pi$$,D$ 为卷积网络提取特征的维度,这里resnet50是1024(预训练在Imagenet).
 
-* $S^c$在这里做了一个堆叠,现在尺寸变为了 视频数$\times$(2 or 3)$\times$1024, $\mathbf{S}^{c}=\left\{S_{k m}^{c}:(1 \leq k \leq K) \wedge(m \in \Pi)\right\}$,$c$为support video的某一类。
+* $S^c$在这里做了一个堆叠,现在尺寸变为了 视频数$\times$((2 or 3)$\times$1024), $\mathbf{S}^{c}=\left\{S_{k m}^{c}:(1 \leq k \leq K) \wedge(m \in \Pi)\right\}$,$c$为support video的某一类。
 
   ```python
    s = [torch.index_select(support_set, -2, p).reshape(n_support, -1) for p in self.tuples]
@@ -45,7 +43,7 @@
 * 然后是通过两个线性层计算support set和query set的K,V值(使用的linear layer是共享权重的),之后再计算其不同类别的分数(**拿query的K与support的K进行计算分数**),同时对获得的分数做了一个$Softmax$ 操作
 
   $$
-  \Upsilon,\Gamma : \mathrm{R}^{2\times D} \rightarrow \mathrm{R}^{d_k} \quad and \quad \Lambda:\mathrm{R}^{2\times D} \rightarrow \mathrm{R^{d_v}}\\
+  \Upsilon,\Gamma : \mathrm{R}^{2D} \rightarrow \mathrm{R}^{d_k} \quad and \quad \Lambda:\mathrm{R}^{2D} \rightarrow \mathrm{R^{d_v}}\\
   a^c_{kmp} = L(\Gamma \cdot S^c_{km}) \cdot L(\Upsilon\cdot Q_p)\\
   \tilde{a}^c_{kmp} = \frac{exp(a^c_{kmp})/ \sqrt{d_k}}{\sum_{l,n}exp(a^c_{lnp})/\sqrt{d_k}}
   $$
