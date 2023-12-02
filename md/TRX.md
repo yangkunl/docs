@@ -27,9 +27,10 @@
 
     $$
     Q_p=\left[\Phi\left(q_{p_1}\right)+\operatorname{PE}\left(p_1\right), \Phi\left(q_{p_2}\right)+\operatorname{PE}\left(p_2\right)\right] \in \mathbb{R}^{2 \times D} \\
-    
     S^c_{km}=\left[\Phi\left(s^c_{km_1}\right)+\operatorname{PE}\left(m_1\right), \Phi\left(S^c_{km_2}\right)+\operatorname{PE}\left(m_2\right)\right] \in \mathbb{R}^{2 \times D}
     $$
+    
+
     其中$m \in \Pi$$,D$ 为卷积网络提取特征的维度,这里resnet50是1024(预训练在Imagenet).
 
 * $S^c$在这里做了一个堆叠,现在尺寸变为了 视频数$\times$(2 or 3)$\times$1024, $\mathbf{S}^{c}=\left\{S_{k m}^{c}:(1 \leq k \leq K) \wedge(m \in \Pi)\right\}$,$c$为support video的某一类。

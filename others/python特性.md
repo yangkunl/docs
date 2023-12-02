@@ -1414,11 +1414,11 @@ asyncio.run(main())
   >
   >    ```python
   >    import asyncio
-  >                      
+  >                         
   >    async def main():
   >        await foo()
   >        await bar()
-  >                      
+  >                         
   >    loop = asyncio.get_event_loop()
   >    loop.run_until_complete(main())
   >    ```
@@ -1570,4 +1570,4 @@ while循环语句
 
 ## 33.with
 
-`with`语句在 Python 中用于简化资源管理，主要用于对资源进行获取和释放。
+`with`语句在 Python 中用于简化资源管理，主要用于对资源进行获取和释放。 
