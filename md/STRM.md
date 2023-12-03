@@ -1,70 +1,20 @@
 **Spatio-temporal Relation Modeling for Few-shot Action Recognition**(CVPR2022)
 
-提出了一种新颖的recongnition frame-work STRM
+## 1.baseline(TRX)的问题
 
-spatio-tempoal module
-
-local patch-level 和 global frame-level去聚合空间和时间背景,capture the appearance
-
-我们方法的重点是一个新颖的时空富
-
-relevant fine-grained action recognition
-
-收集足够的带标记的例子,
-
-现有问题:通常的小样本学习是收集单个support video 和 support class的average representation,only frame-level representation,没有明确使用视频子序列进行时空关系建模,建模query video和limited support video的时序关系是一个重大挑战,特别是发生在不同的速度和时间偏移上,
-
-video representation encode relevant information从多个子动作上编码相关信息,而且时空关系对于需要时序的细粒度识别有很大的关系,
-
-TRX没有明确利用现有的特征,
-
-both local patch feature in a frame and global frame features in a vedio
-
-丰富的空间和时间背景编码;
-
-增强了对视频中的相关物体及其相应的运动的辨别
-
-此外，通过对高阶时间关系的自动学习所产生的一套精简的标值，这种针对特定类别的可辨别性是可以实现的。
-
-贡献:
-
-local patch-level enrichment 和 global frame-level enrichment
-
-by attention to all patched
-
-sample-agnostic
-
-TRM模块,
-
-query-class similarity classifier查询类相似性分类器
-
-## baseline
-
-使用的是TRX作为baseline,
-
-TRX利用cross-transformer 将query video和support video中以**不同速度和瞬间发生的动作**进行了匹配。
-
-首先，对于查询视频中的每个子序列，都会通过聚合某个动作类别的支持视频中所有可能的子序列，计算出查询的(对于某一个子序列)特定类别原型。
-
-via
-
-TRX使用了hand-crafted representations
+使用的是TRX作为baseline,TRX利用cross-transformer 将query video和support video中以**不同速度和瞬间发生的动作**进行了匹配。首先，对于查询视频中的每个子序列，都会通过聚合某个动作类别的支持视频中所有可能的子序列，计算出查询的(对于某一个子序列)特定类别原型。相当于TRX使用了hand-crafted representations
 
 limitaition:
 
-TRX是对query 和 support action sub-sequence,但是对于spatial context variation( relevant object appearance),tempoal context
+- TRX是对query 和 support action sub-sequence,但是对于spatial context variation( relevant object appearance),tempoal context(视频背景发生变化),具有局限性。
 
-(视频背景发生变化),
 
-TRX使用了多个cross-Transformer,
+- TRX使用了多个cross-Transformer。因此，这就导致模型的灵活性较差，除了需要对不同的 Ω 组合进行人工模型搜索以找到最佳 Ω∗ 之外，还需要为不同的心值建立专门的分支。接下来，我们将介绍旨在综合处理上述问题的拟议方法。
 
-因此，这就导致模型的灵活性较差，除了需要对不同的 Ω 组合进行人工模型搜索以找到最佳 Ω∗ 之外，还需要为不同的心值建立专门的分支。接下来，我们将介绍旨在综合处理上述问题的拟议方法。
 
 为了解决以上问题同时增强class-specific的discriminability
 
-Feature Discriminability:TRX仅仅是只关注temporal relationship,本文同时聚合了空间和时空特征,
-
-相反，我们的方法学会了以较低的心数对高阶关系建模，减少了归纳偏差，从而提高了模型的灵活性。
+本文在patch-level 和 frame-level上进行了特征的聚合。
 
 ## pipeline
 
@@ -116,10 +66,8 @@ L个视频通过feature extractor 得到尺度为$P\times P \times D$的特征,�
 
 - **Query-class Similarity**
 
-  对于得到的$\mathbf{h}_i$特征,获得了其tuple reoresentation $\mathbf{l}_t= [\mathbf{h}_{t_1};\cdots ; \mathbf{h}_{t_w}] \in  \mathrm{R}^{w D} $(跟TRX一样的帧组合),对于$t= (t_1,\cdots,t_w) \in \Pi_w$在一个视频中,然后使用$\mathbf{W}_{cls} \in  \mathrm{R}^{w D \times D}$,得到$\mathbf{z_t} = \sigma({\mathbf{W}_{cls}}^T\mathbf{l}_{t})$,然后$\mathbf{z_t^Q}$代表query video的特征,
+  对于得到的$\mathbf{h}_i$特征,获得了其tuple reoresentation $\mathbf{l}_t= [\mathbf{h}_{t_1};\cdots ; \mathbf{h}_{t_w}] \in  \mathrm{R}^{w D} $(跟TRX一样的帧组合),对于$t= (t_1,\cdots,t_w) \in \Pi_w$(这是帧组合)在一个视频中,然后使用$\mathbf{W}_{cls} \in  \mathrm{R}^{w D \times D}$,得到$\mathbf{z_t} = \sigma({\mathbf{W}_{cls}}^T\mathbf{l}_{t})$,然后$\mathbf{z_t^Q}$代表query video的特征,
   $$
   M(Q, c)=\sum_{\omega \in \Omega} \frac{1}{\left|\Pi_{\omega}\right|} \sum_{t \in \Pi_{\omega}} \max _{j} \phi\left(\mathbf{z}_{t}^{Q}, \mathbf{z}_{j}^{c}\right)
   $$
-  
-
   

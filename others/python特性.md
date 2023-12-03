@@ -286,6 +286,49 @@ def person(name):
 
 
 
+## 9.python深拷贝
+
+- `==`和`is`
+
+  `==`只能判断数值是否相同,而`is`可以判断是否是同一个对象,而不仅仅是数值相同
+
+- 拷贝
+
+  深拷贝,浅拷贝
+
+  防止对数据进行更改使用拷贝,拷贝的简单理解就是复制,全部复制是深拷贝,部分复制是浅拷贝。
+
+  深拷贝递归拷贝,浅拷贝顶层拷贝,
+
+  - 引用的复制,浅拷贝
+
+    ```python
+    a = [11, 22, 33]
+    b = a
+    ```
+
+  - 浅拷贝(使用列表切片的时候也是浅拷贝,使用字典的copy也是浅拷贝)
+
+    注意浅拷贝对于不可变类型和可变类型的copy不同
+
+    copy.copy 对于可变类型,会进行浅拷贝
+
+    copy.copy对于不可变类型,**不会拷贝**,仅仅是指向
+
+    ```python
+    copy.cpoy
+    ```
+
+  - 深拷贝(不管是啥都拷贝)
+
+    ```python
+    copy.deepcopy
+    ```
+
+      
+
+  
+
 ## python抽象基类
 
 ## with
@@ -1414,11 +1457,11 @@ asyncio.run(main())
   >
   >    ```python
   >    import asyncio
-  >                         
+  >                            
   >    async def main():
   >        await foo()
   >        await bar()
-  >                         
+  >                            
   >    loop = asyncio.get_event_loop()
   >    loop.run_until_complete(main())
   >    ```
