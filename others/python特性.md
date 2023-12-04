@@ -325,13 +325,8 @@ def person(name):
     copy.deepcopy
     ```
 
-      
 
-  
-
-## python抽象基类
-
-## with
+## 10.python上下文管理器with
 
 `with` 语句是 Python 的一种语法糖，它用于简化资源管理，例如文件处理、网络连接、数据库连接等。使用 `with` 语句可以确保在代码块执行完毕后资源会被正确释方，即便发生异常也能正确处理。
 
@@ -713,7 +708,9 @@ hi world
 
 可以看到其实就是使用了python 中装饰器这个语法糖,将函数或者类注册进Registry 对象的字典中,再通过字典的get方法拿到这个函数或者类,由此可以方便的调用这个函数或者类。
 
-# python buildin 函数
+# python builtin 函数
+
+python内建函数会自动加载很多的,常用的变量
 
 ## abs（x）
 
@@ -1457,11 +1454,11 @@ asyncio.run(main())
   >
   >    ```python
   >    import asyncio
-  >                            
+  >                               
   >    async def main():
   >        await foo()
   >        await bar()
-  >                            
+  >                               
   >    loop = asyncio.get_event_loop()
   >    loop.run_until_complete(main())
   >    ```
