@@ -39,6 +39,16 @@
       subMaxLevel: 5, // 生成目录的最大层级
       coverpage: true, //docsify便会默认加载 _coverpage.md，来作为封面的格式
       onlyCover: true,
+      busuanzi: true,
+      progress: {
+        position: "top",
+        color: "var(--theme-color,#ffb606)",
+        height: "3px",
+    },
+      hideCode: {
+        scroll: false, // Enable scrolling
+        height: 100 // Max height
+    },
       copyCode: {
           buttonText: 'copy code',
           errorText: 'Error',
@@ -155,7 +165,11 @@
     }
   }
   </script>
-
+<!--阅读进度条-->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-progress@latest/dist/progress.min.js"></script>
+<!--  隐藏代码 -->
+  <script src="https://unpkg.com/docsify-busuanzi@1.0.1/dist/docsify-busuanzi.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-hide-code/dist/docsify-hide-code.min.js"></script>
 
   <script src="//cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
   <script type="text/javascript" src="//unpkg.com/mermaid/dist/mermaid.min.js"></script>

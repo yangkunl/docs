@@ -225,6 +225,21 @@ print(next(f))
 
 ## 7.python正则表达式
 
+| 符号 | 含义                                                 |
+| ---- | ---------------------------------------------------- |
+| `^`  | matches the beginning of the line                    |
+| `$`  | matches the end of the line                          |
+| `.`  | matches any character                                |
+| `\s` | matches whitespace                                   |
+| `\S` | matches any non-whitespace                           |
+| `*`  | repeats a character zero or more times               |
+| `*?` | repeats a character zero or more times(non - greedy) |
+| +    | repeats a character one or more times                |
+| +?   | repeats a character oneor more times(non - greedy)   |
+|      |                                                      |
+
+使用`import re`,使用`re.serach()`和`re.finall()`
+
 ## 8.python闭包
 
 一个函数里面又嵌套定义了另外一个函数,**里面那个函数使用了外部函数的局部变量**,(里面的函数必须要使用外面的变量,否则不是闭包)这就是闭包。
@@ -365,6 +380,40 @@ with open('example.txt', 'r') as file:
 ```
 
 在这个例子中，`with` 语句确保在代码块执行完毕后文件被正确关闭，无需显式调用 `file.close()`。
+
+## 11.python 面向对象
+
+- 封装
+
+  将函数和属性封装进入class 成为方法和属性,
+
+- 继承
+
+  在类别1写好的前提下加功能
+
+- 多态
+
+  调用对象方法的时候,要看这个是父类创建的对象还是子类创建的对象。 
+
+- 多继承
+
+如果是单继承的,直接使用super就行。
+
+类中的方法以及属性都是变量名,变量名指向代码块或者储存值的地方
+
+内建属性:python3中的都是新式类,python2中只有继承了object的才是新式类,新式类中自带了很多新的功能
+
+- `__getattribute__()`拦截器 ,只要返回任何属性,python解释器都要访问这个方法, 
+
+python解释器会将对象(类对象,实例对象)中的所有属性,方法,通通用字典来存储,将属性的名字变为字典中的key,将属性对应的数据当做字典的value,所有代码都存在类对象里。 
+
+
+
+## 12.python中的联网包
+
+Transport Control Protocol(TCP)
+
+
 
 ## Jit
 
@@ -1454,11 +1503,11 @@ asyncio.run(main())
   >
   >    ```python
   >    import asyncio
-  >                               
+  >                                        
   >    async def main():
   >        await foo()
   >        await bar()
-  >                               
+  >                                        
   >    loop = asyncio.get_event_loop()
   >    loop.run_until_complete(main())
   >    ```
@@ -1611,3 +1660,4 @@ while循环语句
 ## 33.with
 
 `with`语句在 Python 中用于简化资源管理，主要用于对资源进行获取和释放。 
+
