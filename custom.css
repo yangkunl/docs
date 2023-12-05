@@ -163,8 +163,8 @@ h1, h2, h3, h4, h5, h6 {
 .markdown-section pre {
     position: relative;
     z-index: 1;
-    border: 1px solid #ccc;
-    background-color: #f8f8f8;
+    border: 1px solid #f8f8f8;
+    background-color: #f8f8f9;
     padding: 12px;
     border-radius: 5px;
     font-family: 'Times New Roman', Times, serif;

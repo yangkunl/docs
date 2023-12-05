@@ -200,12 +200,12 @@ body {
 /*    color: #fff; !* 夜间模式的代码文本颜色 *!*/
 /*}*/
 .markdown-section pre {
-    border: 1px solid #ffffff;
-    background-color: rgba(238, 221, 221, 0.1);
+    border: 1px solid rgb(35, 38, 46);
+    background-color: rgb(35, 38, 46);
     padding: 12px;
     border-radius: 5px;
     font-family: 'Times New Roman', Times, serif;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.5;
     overflow-x: auto; /* 添加水平滚动条 */
 }
