@@ -413,7 +413,9 @@ python解释器会将对象(类对象,实例对象)中的所有属性,方法,通
 
 Transport Control Protocol(TCP)
 
+## 13.python中的property
 
+把类中的方法变为属性,可直接使用调用,不应该将变化的属性
 
 ## Jit
 
@@ -1503,11 +1505,11 @@ asyncio.run(main())
   >
   >    ```python
   >    import asyncio
-  >                                        
+  >                                           
   >    async def main():
   >        await foo()
   >        await bar()
-  >                                        
+  >                                           
   >    loop = asyncio.get_event_loop()
   >    loop.run_until_complete(main())
   >    ```
