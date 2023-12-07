@@ -40,6 +40,16 @@
       coverpage: true, //docsify便会默认加载 _coverpage.md，来作为封面的格式
       onlyCover: true,
       busuanzi: true,
+            scrollToTop: {
+            auto: true,
+            text: '顶部',	<!-- 文字顯示 -->
+            right: 15,		<!-- 方位右邊 -->
+            bottom: 15,		<!-- 方位下面 -->
+
+                            <!-- 改变按钮的大小 -->
+            backgroundColor: '#777',	<!-- 背景顏色 -->
+            offset: 300
+        },
       progress: {
         position: "top",
         color: "var(--theme-color,#ffb606)",
@@ -170,6 +180,9 @@
     }
   }
   </script>
+<!-- 回滚回顶部-->
+  <script src="//unpkg.com/docsify-scroll-to-top/dist/docsify-scroll-to-top.min.js"></script>
+
 <!--阅读进度条-->
   <script src="https://cdn.jsdelivr.net/npm/docsify-progress@latest/dist/progress.min.js"></script>
 <!--  隐藏代码 -->
