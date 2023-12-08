@@ -62,6 +62,12 @@ from multiprocessing import Pool
 
 只要**class**定义了任何一个` def __get__()` ` def __set__()` `def__delete__()`,都会把这个class变为descriptor。描述器是Python中的一种强大特性,大量的机制是使用descriptor来完成的。其允许我们自定义属性的访问方式。
 
+能做的事情很多
+
+- 知道property的实现原理
+- 可以写出@classmethod的实现过程,当然@staticmethod
+- 实现更巧妙的类似于property的那种对属性操作时,可以转换为方法的调用
+
 所有的LOAD_ATTR
 
 ```python
@@ -416,6 +422,36 @@ Transport Control Protocol(TCP)
 ## 13.python中的property
 
 把类中的方法变为属性,可直接使用调用,不应该将变化的属性
+
+## 14.python中的垃圾回收机制
+
+- 小整数值
+
+  列表在使用过程中,即使数据相同,它依然是各自是各自一份,但是小整数是有一个**小整数对象池**
+
+  大整数需要做销毁
+
+  python解释器为了方便的让程序运行效率更快,所以通常设置数据,例如1,2,3在解释器开始创建的阶段就已经创建好了,这个范围是[-5, 256]
+
+- 字符串驻留机制
+
+  自 动对普通字符串开启驻留机制,即共用同一份,但是如果字符串中包含空格等特殊字符,就不会开启(IDE会开启,原因是IDE会做优化)
+
+- Garbage collection(GC垃圾回收机制)
+
+  python当做使用的是引用计数为主,引用计数的缺点,维护引用计数消耗资源,循环引用
+
+  ![image-20231206171028180](img\image-20231206171028180.png)
+
+  
+
+## 15.python中的logging日志模块
+
+日志一共分为5个等级,从低到高分别是
+
+>DEBUFG ->INFO->WARNING ->ERROR  ->CRITICAL
+
+默认是warning,可以配置logging中的级别来控制是否打印信息,
 
 ## Jit
 
@@ -1505,11 +1541,11 @@ asyncio.run(main())
   >
   >    ```python
   >    import asyncio
-  >                                           
+  >                                                 
   >    async def main():
   >        await foo()
   >        await bar()
-  >                                           
+  >                                                 
   >    loop = asyncio.get_event_loop()
   >    loop.run_until_complete(main())
   >    ```
