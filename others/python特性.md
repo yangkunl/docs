@@ -453,6 +453,10 @@ Transport Control Protocol(TCP)
 
 默认是warning,可以配置logging中的级别来控制是否打印信息,
 
+## 16.python 中的爬虫
+
+
+
 ## Jit
 
 jit是numba库里面最核心最厉害的功能：我们知道，python是解释性语言，数据类型可以是动态地，带来了很多方便，但是速度也大大降低。而编译性语言，例如c/c++很快，所以jit就是用来编译python的，编译好处就是，可以对代码进行优化，从而加速。jit是一个修饰符decorator，作用对象是函数。即对函数进行编译优化，产生一个高效代码。
@@ -1541,11 +1545,11 @@ asyncio.run(main())
   >
   >    ```python
   >    import asyncio
-  >                                                 
+  >                                                    
   >    async def main():
   >        await foo()
   >        await bar()
-  >                                                 
+  >                                                    
   >    loop = asyncio.get_event_loop()
   >    loop.run_until_complete(main())
   >    ```

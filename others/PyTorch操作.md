@@ -671,3 +671,511 @@ backward hook output:(tensor([[[[0.5000, 0.0000],
 ## 5.PyTorch常见报错
 
 [文档](https://shimo.im/docs/bdV4DBxQwUMLrfX5/read)
+
+## 6.Sacred-深度学习实验管理工具
+
+### **介绍**
+
+本文参考学习自[https://www.jarvis73.com/2020/11/15/Sacred/](https://link.zhihu.com/?target=https%3A//www.jarvis73.com/2020/11/15/Sacred/)，内容有所增删。
+
+`Sacred`是一个 Python 库, 可以帮助研究人员配置、组织、记录和复制实验。它旨在完成研究人员需要围绕实际实验进行的所有繁琐的日常工作, 以便:
+
+- **跟踪实验的所有参数**
+- 轻松进行**不同设置**的实验
+- 将单个运行的配置保存在数据库中
+- 重现结果
+
+`Sacred` 通过以下的机制实现上述目标:
+
+- `Config Scopes` (配置范围): 通过局部变量的方式来定义实验参数的模块。
+- `Config Injection` (配置注入): 可以从任意函数中获取实验参数。
+- `Command-Line Interface` (命令行接口): 可以获得一个非常强大的命令行接口用于修改参数和运行实验的变体。
+- `Observers` (观察器): 提供了多种观察器来记录实验中所有相关的信息: 依赖、配置、机器和结果, 可以保存到 MongoDB、文件等。
+- `Automatic Seeding` (自动种子): 自动设置并保存随机种子以确保实验的可重复性。
+
+`Sacred`最简单的运行例子：
+
+```python
+from sacred import Experiment
+from sacred.observers import FileStorageObserver
+
+ex = Experiment()
+ex.observers.append(FileStorageObserver.creat("my_runs"))
+
+@ex.config
+def my_config():
+    message = "hello world"
+
+@ex.automain
+def my_main(message):
+    print(message)
+```
+
+### **教程**
+
+### **1、快速开始**
+
+```python
+from numpy.random import permutation
+from sklearn import svm, datasets
+from sacred import Experiment           # Sacred 相关
+ex = Experiment('iris_rbf_svm')         # Sacred 相关
+
+@ex.config          # Sacred 相关
+def cfg():
+    C = 1.0
+    gamma = 0.7
+
+@ex.automain        # Sacred 相关
+def run(C, gamma):
+    iris = datasets.load_iris()
+    per = permutation(iris.target.size)
+    iris.data = iris.data[per]
+    iris.target = iris.target[per]
+
+    clf = svm.SVC(C, 'rbf', gamma=gamma)
+    clf.fit(iris.data[:90], iris.target[:90])
+    return clf.score(iris.data[90:], iris.target[90:])  # Sacred 相关
+```
+
+运行上面的脚本, 输出如下:
+
+```text
+WARNING - iris_rbf_svm - No observers have been added to this run
+INFO - iris_rbf_svm - Running command 'run'
+INFO - iris_rbf_svm - Started
+INFO - iris_rbf_svm - Result: 0.9833333333333333
+INFO - iris_rbf_svm - Completed after 0:00:00
+```
+
+可以看到代码中没有使用任何的 `print` 函数时, 该脚本的输出会包含如下几个结果:
+
+1. 一个警告: 表示在这次代码运行中没有添加**任何观察器(observer)**
+2. 当前运行的命令 `run`
+3. 开始运行
+4. 运行的结果
+5. 运行的时间
+
+### **2、运行组件**
+
+在上一节中可以看到只要代码具有了以下三部分往往就可以进行使用。下面分别对其所起作用进行介绍。
+
+- `Experiment` 类是 Sacred 框架的核心类. `Sacred`是一个辅助实验的框架, 因此在实验代码的最开始, 我们首先要定义一个 `Experiment` 的实例。
+- 带有装饰器 `@ex.automain` 的函数 `train()` 是这个脚本的主入口, 当运行该脚本时, 程序会从 `train()` 函数进入开始执行。
+- 带有 `@ex.config` 装饰器的函数中的**局部变量会被 Sacred 搜集起来作为参数**, 之后可以在任意函数中使用它们. 配置函数中的变量可以是整型, 浮点型, 字符串, 元组, 列表, 字典等可以`json` 序列化的类型. 并且可以在配置函数中使用之类的逻辑语句如 `if...else...` 来使得参数之间存在依赖关系. 变量的行内注释会被搜集起来写入变量的帮助文档.
+
+除此之外，`Sacred`框架还拥有 `@ex.capture`这一用于在任意函数中写入参数并进行调用的使用方法如下。
+
+```python
+from sacred import Experiment
+ex = Experiment('exp_name')
+
+@ex.config
+def my_config():    # 任意名称
+    """ The core configuration. """
+    batch_size = 16             # int, batch size of the training
+    lr = 0.001                  # float, learning rate
+    optimizer = 'adam'          # str, the optimizer of training
+
+@ex.capture
+def train(batch_size, optimizer, lr=0.1):
+    if optimizer == 'adam':
+        optim = torch.optim.Adam(model.parameters(), lr)
+    else:
+        optim = torch.optim.SGD(model.parameters(), lr)
+    # ...
+
+@ex.automain
+def main():
+    train()                     # 16, 'adam', 0.001
+    train(32)                   # 32, 'adam', 0.001
+    train(optimizer='sgd')      # 16, 'sgd', 0.001
+```
+
+### **3、参数配置方式**
+
+`Sacred` 提供了三种定义配置的方法:
+
+- `Config Scope`
+- 字典
+- 配置文件
+
+`Config Scope` 是通过装饰器 `@ex.config` 来实现的, 它在实验运行之前 (即定义阶段) 执行. 装饰器装饰的函数中**所有受到赋值的局部变量**会被搜集并整合为实验配置. 在函数内部可以使用 python 的任意常用的语句:
+
+```python
+@ex.config
+def my_config():
+    """This is my demo configuration"""
+
+    a = 10  # some integer
+
+    # a dictionary
+    foo = {
+        'a_squared': a**2,
+        'bar': 'my_string%d' % a
+    }
+    if a > 8:
+        # cool: a dynamic entry
+        e = a/2
+        
+        
+my_config()
+# {'foo': {'bar': 'my_string10', 'a_squared': 100}, 'a': 10, 'e': 5}
+```
+
+**作为`Config Scope` 的函数不能包含任何的 `return` 或者 `yield` 语句。**
+
+字典也可以直接用来添加配置
+
+```python
+ex.add_config({
+    'foo': 42,
+    'bar': 'baz'
+})
+
+# 或者
+ex.add_config(foo=42, bar='baz')
+```
+
+**配置文件**
+
+此外, `Sacred` 还允许用户通过文件来添加配置, 支持 `json`, `pickle` 和 `yaml` 三种格式
+
+```python
+ex.add_config('conf.json')
+ex.add_config('conf.pickle')    # 要求配置保存为字典
+ex.add_config('conf.yaml')      # 依赖 PyYAML 库
+```
+
+### **4、捕获参数**
+
+`Sacred`会自动为**捕获函数 (captured functions)** 注入需要的参数, 捕获函数指的是那些被
+
+- `@ex.main`
+- `@ex.automain`
+- `@ex.capture`
+- `@ex.command`
+
+装饰了的函数, 其中 `@ex.capture` 是普通的捕获函数装饰器, 具体的例子和参数优先级顺序上文已经给出, 此处不再赘述.
+
+**注意, 捕获函数的参数在实验配置中不存在且也没有传参时会报错，同时注意实验参数的命名，避免冲突**
+
+捕获函数可以获取一些 `Sacred`内置的变量:
+
+- `_config` : 所有的参数作为一个字典(只读的)
+- `_seed` : 一个随机种子
+- `_rnd` : 一个随机状态
+- `_log` : 一个 logger
+- `_run` : 当前实验运行时的 run 对象
+
+除此之外，也可以通过前缀的使用来调用之前所定义的实验参数，使用方式如下所示：
+
+```python
+@ex.config
+def my_config1():
+    dataset = {
+        'filename': 'foo.txt',
+        'path': '/tmp/'
+    }
+
+@ex.capture(prefix='dataset')
+def print_me(filename, path):  # direct access to entries of the dataset dict
+    print("filename =", filename)
+    print("path =", path)
+```
+
+同时，`_config` 默认返回的是一个字典, 调用参数时需要大量的 `[""]` 符号, 因此本文参考链接的作者实现了一个映射的功能, 把字典的键值对映射为了成员变量, 可以直接通过 `.` 来调用. 这个映射支持字典的嵌套映射。（不过我还是习惯于 `[""]` 符号2333333
+
+```python
+class Map(ReadOnlyDict):
+    __getattr__ = dict.__getitem__
+    __setattr__ = dict.__setitem__
+    __delattr__ = dict.__delitem__
+
+    def __init__(self, obj, **kwargs):
+        new_dict = {}
+        if isinstance(obj, dict):
+            for k, v in obj.items():
+                if isinstance(v, dict):
+                    new_dict[k] = Map(v)
+                else:
+                    new_dict[k] = v
+        else:
+            raise TypeError(f"`obj` must be a dict, got {type(obj)}")
+        super(Map, self).__init__(new_dict, **kwargs)
+```
+
+使用例子如下:
+
+```python
+@ex.automain
+def train(_config):
+    cfg = Map(_config)
+    
+    lr = cfg.lr							# lr = cfg["lr"]
+    batch_size = cfg.batch_size			# batch_size = cfg["batch_size"]
+    channels = cfg.net.channels			# channels = cfg["net"]["channels"]
+```
+
+### **5、钩子机制**
+
+配置的钩子 (hooks) 在初始化阶段执行, 可以在运行任何命令之前更新实验参数:
+
+```python
+@ex.config_hook
+def hook(config, command_name, logger):
+    config["a"] = 10
+    return config
+```
+
+但看代码好像用的不多，且在Ingredient(本文后面有介绍) 和 hook 一起用的时候，更新参数有时不成功。建议谨慎使用。
+
+### **6、命令行使用**
+
+### **（1）命令**
+
+`Sacred`内置了一系列命令, 同时用户可以自定义命令. 命令的使用方式如下:
+
+```bash
+# 内置命令
+python demo.py print_config
+python demo.py print_config with a=1
+# 自定义命令
+python demo.py train
+python demo.py train with batch_size=16
+```
+
+| 命令 | 说明 |
+| ---- | ---- |
+|      |      |
+
+再次考虑前文所给出的例子
+
+```python
+@ex.config
+def my_config():
+    """This is my demo configuration"""
+
+    a = 10  # some integer
+
+    # a dictionary
+    foo = {
+        'a_squared': a**2,
+        'bar': 'my_string%d' % a
+    }
+    if a > 8:
+        # cool: a dynamic entry
+        e = a/2
+```
+
+可以使用命令行接口来获取所有的实验配置:
+
+```bash
+python config_demo.py print_config
+```
+
+这个语句中的第一个参数 `print_config` 是 `Sacred`内置的一个命令, 用于打印所有实验参数. 输出结果如下:
+
+```bash
+INFO - config_demo - Running command 'print_config'
+INFO - config_demo - Started
+Configuration (modified, added, typechanged, doc):
+  """This is my demo configuration"""
+  a = 10                             # some integer
+  e = 5.0                            # cool: a dynamic entry
+  seed = 954471586                   # the random seed for this experiment
+  foo:                               # a dictionary
+    a_squared = 100
+    bar = 'my_string10'
+INFO - config_demo - Completed after 0:00:00
+```
+
+自定义命令:
+
+```python
+@ex.command
+def train(_run, _config):
+    """
+    Training a deep neural network.
+    """
+    pass
+```
+
+运行命令:
+
+```bash
+python demo.py train
+```
+
+查看命令帮助：
+
+```bash
+python demo.py help train
+
+#输出：
+train(_run, _config)
+    Training a deep neural network.
+```
+
+### **（2）参数**
+
+命令行接口最大的作用就是更新实验参数。
+
+**参数的类型**: 要注意的是, Linux 中参数都是作为字符串来对待的, 因此在解析参数时遵循如下的准则
+
+- 先给参数加一层引号(不论单双), 已经有引号的不再加
+- 然后蜕掉一层引号, 此时如果是数字, 那么就解析为数字, 否则解析为字符串
+
+```bash
+# 假设参数 a 默认为数字类型
+python demo.py with a=1         # a=1
+python demo.py with a='1'       # a=1
+python demo.py with a='"1"'     # a='1'
+    
+# 假设参数 b 默认为字符串类型
+python demo.py with b=1         # b=1
+python demo.py with b='1'       # b=1
+python demo.py with b='"1"'     # b='1'
+python demo.py with b=baz       # b='baz'
+python demo.py with b='baz'     # b='baz'
+python demo.py with b='"baz"'   # b='baz'
+```
+
+**参数中的空格**: 由于 `Sacred`是以 `<key>=<value>` 的形式来传参的, 而这样的形式在 Python 程序的传参中是被当做一个字符串参数的, 因此 `<key>` , `<value>` 内部和等号两边都不能显式的出现空格, 可以用字符逃逸或者引号。
+
+```bash
+# 下面三种写法是等价的
+python demo.py with a=hello\ world      # a='hello world'
+python demo.py with 'a=hello world'     # a='hello world'
+python demo.py with a='hello world'     # a='hello world'
+```
+
+**参数中的括号**: 括号是 Linux 中的关键字, 因此使用圆括号时要加引号, 而方括号不是关键字, 所以可以不加。
+
+```bash
+# 圆括号
+python demo.py with a=(1,2)                 # 报错
+python demo.py with a='(1,2)'               # a=[1, 2]
+python demo.py with a='(hello,world)'       # a='(hello,world)'
+python demo.py with a='("hello","world")'   # a=["hello", "world"]
+    
+# 方括号
+python demo.py with a=[1,2]                 # a=[1, 2]
+python demo.py with a='[1,2]'               # a=[1, 2]
+python demo.py with a='[hello,world]'       # a='[hello,world]'
+python demo.py with a='["hello","world"]'   # a=["hello", "world"]
+    
+# 花括号
+python demo.py with a='{"c":1,"d":2}'       # a={"c": 1, "d": 2}
+```
+
+### **7、实验结果记录**
+
+`Sacred`提供了记录结果的方法。
+
+```python
+@ex.capture
+def some_function(_run):
+    loss = 0.001
+    _run.log_scalar('loss', float(loss), step=1)
+```
+
+`Sacred`默认是可以捕获标准输出的, 但是如果用到的 `tqdm`之类的进度条时, 需要过滤一些参数。
+
+```python
+ex.captured_out_filter = apply_backspaces_and_linefeeds
+```
+
+关于Mongdb观察器、Mongdb及可视化之类的相关功能，由于本人并不使用，也就不在此多写，如有需要请自行查找使用。
+
+FileStorageObserver观察器
+
+```python3
+from sacred import Experiment
+from sacred.observers import FileStorageObserver
+
+ex = Experiment()
+ex.observers.append(FileStorageObserver.creat("my_runs"))
+
+@ex.config
+def my_config():
+    message = "hello world"
+
+@ex.automain
+def my_main(message):
+    print(message)
+```
+
+### **8、配料 (Ingredient)**
+
+`Sacred`提供了一种代码模块化的机制——Ingredient, 其作用是把实验的配置模块化, 从而实现不同模块(和配置)的方便组合. 先看一个模块化数据加载的例子:
+
+```python
+import numpy as np
+from sacred import Ingredient
+
+data_ingredient = Ingredient('data')
+
+@data_ingredient.config
+def cfg():
+    filename = 'my_dataset.npy'
+    normalize = True
+
+@data_ingredient.capture
+def load_data(filename, normalize):
+    data = np.load(filename)
+    if normalize:
+        data -= np.mean(data)
+    return data
+```
+
+这样就把和数据加载有关的配置全部装进了 `data_ingredient` 中, 它的名称为 `data` .
+
+接下来把配料 `data_ingredient` 引入主脚本, 并加入 `Experiment` 的 `ingredients` 参数的列表中.
+
+```python
+from sacred import Experiment
+from dataset_ingredient import data_ingredient, load_data
+from utils import Map
+
+ex = Experiment('my_experiment', ingredients=[data_ingredient])
+
+@ex.automain
+def run(_config):
+    cfg = Map(_config)  # Map是前文所定义的
+    data = load_data()  # 直接调用函数而无需参数 (参数由 Sacred 注入)
+    # 获取参数
+    print(cfg.data.filename)
+    print(cfg.data.normalize)
+```
+
+配料也可以拥有自己的命令:
+
+```python
+@data_ingredient.command
+def stats():
+    print("Status: 123")
+```
+
+运行时用 `.` 来调用:
+
+```bash
+python demo.py data.stats
+
+# Status: 123
+```
+
+配料可以进一步嵌套:
+
+```python
+data_ingredient = Ingredient('data', ingredients=[my_subingredient])
+```
+
+在捕获函数中获取配料的参数:
+
+```python
+@ex.capture
+def some_function(data):   # 配料的名称
+    if dataset['normalize']:
+        print("Dataset was normalized")
+```

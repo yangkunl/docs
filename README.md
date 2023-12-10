@@ -18,6 +18,7 @@
 | Spatio-temporal Relation Modeling for Few-shot Action Recognition | [CVPR2022](http://arxiv.org/abs/2112.05132)                  | [GitHub](https://github.com/Anirudh257/strm)   | [STRM](md/STRM.md)         |
 | Sequential Modeling Enables Scalable Learning for Large Vision Models | [arXiv](http://arxiv.org/abs/2312.00785)                     | 无                                             | [LVM](md/LVM.md)           |
 | On the Importance of Spatial Relations for Few-shot Action Recognition | [MM2023](http://arxiv.org/abs/2308.07119)                    | 无                                             | [SA-CT](md/SA-CT.md)       |
+| Focus Your Attention when Few-Shot Classification            | [NeurIPS2023](https://openreview.net/forum?id=uFlE0qgtRO)    | 无                                             | [FORT](md/FORT.md)         |
 
 # 文献仓库
 
@@ -37,6 +38,7 @@
 | M3Net: Multi-view Encoding, Matching, and Fusion for Few-shot Fine-grained Action Recognition | [MM2023](http://arxiv.org/abs/2308.03063)                    | 无                                                           | [M3Net](md/M3Net.md)             |   2023.11.24   |          |
 | Boosting Few-shot Action Recognition with Graph-guided Hybrid Matching | [ICCV2023](http://openaccess.thecvf.com/content/ICCV2023/html/Xing_Boosting_Few-shot_Action_Recognition_with_Graph-guided_Hybrid_Matching_ICCV_2023_paper.html) | 无                                                           | [GgHM](md/GgHM.md)               |   2023.11.30   |          |
 | Spatio-temporal Relation Modeling for Few-shot Action Recognition | [CVPR2022](http://arxiv.org/abs/2112.05132)                  | [GitHub](https://github.com/Anirudh257/strm)                 | [STRM](md/STRM.md)               |   2023.12.2    |          |
+| On the Importance of Spatial Relations for Few-shot Action Recognition | [MM2023](http://arxiv.org/abs/2308.07119)                    | 无                                                           | [SA-CT](md/SA-CT.md)             |   2023.12.7    |          |
 
 - **小样本学习**
 
@@ -50,6 +52,8 @@
 | FD-Align: Feature Discrimination Alignment for Fine-tuning Pre-Trained Models in Few-Shot Learning | [NeurIPS2023](http://arxiv.org/abs/2310.15105)               | [GitHub](https://github.com/skingorz/FD-Align)               | [FD-Align](md/FD-ALign.md)   | 2023.11.25     |          |
 | Boosting Few-shot Action Recognition with Graph-guided Hybrid Matching | [ICCV2023](http://openaccess.thecvf.com/content/ICCV2023/html/Xing_Boosting_Few-shot_Action_Recognition_with_Graph-guided_Hybrid_Matching_ICCV_2023_paper.html) | 无                                                           | [GgHM](md/GgHM.md)           | 2023.11.30     |          |
 | Spatio-temporal Relation Modeling for Few-shot Action Recognition | [CVPR2022](http://arxiv.org/abs/2112.05132)                  | [GitHub](https://github.com/Anirudh257/strm)                 | [STRM](md/STRM.md)           | 2023.12.2      |          |
+| On the Importance of Spatial Relations for Few-shot Action Recognition | [MM2023](http://arxiv.org/abs/2308.07119)                    | 无                                                           | [SA-CT](md/SA-CT.md)         | 2023.12.7      |          |
+| Focus Your Attention when Few-Shot Classification            | [NeurIPS2023](https://openreview.net/forum?id=uFlE0qgtRO)    | 无                                                           | [FORT](md/FORT.md)           | 2023.12.9      |          |
 
 - **多模态**
 
