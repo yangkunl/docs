@@ -2,10 +2,10 @@
 <label class="switch">
   <input type="checkbox" id="modeSwitch" onclick="toggleMode()">
   <span class="slider round"></span>
-  <span class="label-text">模式:crescent_moon:/:sun_with_face:</span>
+  <span class="label-text">模式:crescent_moon:/:sun_with_face:</span> 
 </label>
 
-# <big>论文阅读总览</big>
+# <big>论文阅读总览<img src="_media/3.gif"/></big> 
 
 # 本周新读文献(11月30日)
 

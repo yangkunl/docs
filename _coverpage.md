@@ -1,6 +1,6 @@
 <!-- _coverpage.md -->
 
-<img src="_media\keda.png" alt="logo" style="zoom: 50%;" />
+<img src="_media\keda1.gif" alt="logo" style="zoom: 70%;" />
 
 # :registered:YKL的个人博客
 

@@ -25,12 +25,12 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css" />
 </head>
 <body>
-  <div id="app">🏃‍🏃‍🏃‍💨加载中</div>
+  <div id="app"><img src="_media/loading.gif"/></div>
   <script>
     // var num = 0;
     // mermaid.initialize({ startOnLoad: false });
     window.$docsify = {
-      logo: '_media/log2.png',
+      logo: '_media/log2.gif',
       name: '<span>文献阅读笔记<span>', // 文档标题，会显示在侧边栏顶部
       repo: 'https://github.com/yangkunl/docs', // 右上角Github图标链接
       loadNavbar: true, // 默认加载 _navbar.md，作为顶部导航栏
@@ -173,9 +173,11 @@
       // 切换到夜间模式
       dayModeStylesheet.removeAttribute('disabled');
       nightModeStylesheet.setAttribute('disabled', 'true');
+      alert("是否切换到夜间模式")
     } else {
       // 切换到日间模式
       dayModeStylesheet.setAttribute('disabled', 'true');
+      alert("是否切换到日间模式")
       nightModeStylesheet.removeAttribute('disabled');
     }
   }
