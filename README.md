@@ -7,20 +7,19 @@
 
 # <big>论文阅读总览<img src="_media/3.gif"/></big> 
 
-# 本周新读文献(11月30日)
+# 本周新读文献(2024年9月7日)
 
-| 文章名称                                                     | PDF                                                          | 代码                                           | 笔记                       |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ---------------------------------------------- | -------------------------- |
-| TA2N: Two-Stage Action Alignment Network for Few-Shot Action Recognition | [AAAI2022](https://arxiv.org/pdf/2107.04782.pdf)             | [GitHub](https://github.com/R00Kie-Liu/TA2N)   | [TA2N](md/TA2N.md)         |
-| M3Net: Multi-view Encoding, Matching, and Fusion for Few-shot Fine-grained Action Recognition | [MM2023](http://arxiv.org/abs/2308.03063)                    | 无                                             | [M3Net](md/M3Net.md)       |
-| FD-Align: Feature Discrimination Alignment for Fine-tuning Pre-Trained Models in Few-Shot Learning | [NeurIPS2023](http://arxiv.org/abs/2310.15105)               | [GitHub](https://github.com/skingorz/FD-Align) | [FD-Align](md/FD-Align.md) |
-| Boosting Few-shot Action Recognition with Graph-guided Hybrid Matching | [ICCV2023](http://openaccess.thecvf.com/content/ICCV2023/html/Xing_Boosting_Few-shot_Action_Recognition_with_Graph-guided_Hybrid_Matching_ICCV_2023_paper.html) | 无                                             | [GgHM](md/GgHM.md)         |
-| Spatio-temporal Relation Modeling for Few-shot Action Recognition | [CVPR2022](http://arxiv.org/abs/2112.05132)                  | [GitHub](https://github.com/Anirudh257/strm)   | [STRM](md/STRM.md)         |
-| Sequential Modeling Enables Scalable Learning for Large Vision Models | [arXiv](http://arxiv.org/abs/2312.00785)                     | 无                                             | [LVM](md/LVM.md)           |
-| On the Importance of Spatial Relations for Few-shot Action Recognition | [MM2023](http://arxiv.org/abs/2308.07119)                    | 无                                             | [SA-CT](md/SA-CT.md)       |
-| Focus Your Attention when Few-Shot Classification            | [NeurIPS2023](https://openreview.net/forum?id=uFlE0qgtRO)    | 无                                             | [FORT](md/FORT.md)         |
+| 文章名称              | PDF                                                          | 代码                                                         | 笔记                     |
+| --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------ |
+| Delta Denoising Score | [ICCV2023](https://openaccess.thecvf.com/content/ICCV2023/papers/Hertz_Delta_Denoising_Score_ICCV_2023_paper.pdf) | [GitHub](https://github.com/google/prompt-to-prompt/blob/main/DDS_zeroshot.ipynb)非官方实现 | [DDS](video_edit/DDS.md) |
 
 # 文献仓库
+
+- **视频编辑(Diffusion Model)**
+
+| **文章名称**          | PDF                                                          | 代码                                                         | 笔记                     | 阅读时间 | 复现笔记 |
+| --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------ | :------: | -------- |
+| Delta Denoising Score | [ICCV2023](https://openaccess.thecvf.com/content/ICCV2023/papers/Hertz_Delta_Denoising_Score_ICCV_2023_paper.pdf) | [GitHub](https://github.com/google/prompt-to-prompt/blob/main/DDS_zeroshot.ipynb)非官方实现 | [DDS](video_edit/DDS.md) | 2024.9.7 |          |
 
 - **视频理解(动作识别)**
 

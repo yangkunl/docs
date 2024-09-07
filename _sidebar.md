@@ -1,5 +1,7 @@
 * 🌔**论文阅读**
     * [**🔲阅读论文总览**](README.md)
+    * 🔳**视频编辑**:
+        * [DDS](video_edit/DDS.md)
     * 🔳**视频理解(动作识别)**:
         * [VIM](md/VIM.md)
         * [CLIP-FSAR](md/CLIP-FSAR.md)

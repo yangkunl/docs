@@ -70,4 +70,3 @@ L个视频通过feature extractor 得到尺度为$P\times P \times D$的特征,�
   $$
   M(Q, c)=\sum_{\omega \in \Omega} \frac{1}{\left|\Pi_{\omega}\right|} \sum_{t \in \Pi_{\omega}} \max _{j} \phi\left(\mathbf{z}_{t}^{Q}, \mathbf{z}_{j}^{c}\right)
   $$
-  
