@@ -4,7 +4,7 @@
 
 Delta Denoise Score（DDS）是一种分数方法，用于图像编辑，用于解决Score Distillation Sampling (SDS)在图像编辑应用过程中的模糊。与SDS相比，DDS能够获取更加纯净的梯度。
 
-![image-20240907203736002](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20240907203736002.png)
+![image-20240907203736002](images\image-20240907203736002.png)
 
 # 二、引言
 
@@ -34,7 +34,7 @@ $$
 $$
 这样该梯度就能进行图像编辑，或者直接将$g(\theta)$设置为随机噪声，然后对噪声进行优化，进行图片生成等。但是使用SDS做图像生成，存在的问题是会导致生成的图片趋近于特定的模式，也就是多样性不足。如下图所示：
 
-![image-20240911091742129](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20240911091742129.png)
+![image-20240911091742129](images\image-20240911091742129.png)
 
 其中左图是使用SDS优化随机噪声来生成图像，右图是使用Diffusion model正常生成图像，可以发现使用SDS的图像生成是趋近于特定的模式，生成的火烈鸟都有这近乎相同的朝向。
 
@@ -56,7 +56,7 @@ $$
 
 作者还使用一个简单的实验进行了证明：
 
-![image-20240910220404717](C:\Users\19475\AppData\Roaming\Typora\typora-user-images\image-20240910220404717.png)
+![image-20240910220404717](images\image-20240910220404717.png)
 
 就算是编辑的prompt和原图像匹配，也就是根本不做编辑。随着迭代次数的增加，图片也会越来越模糊和不清晰。
 
