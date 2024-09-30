@@ -9,9 +9,11 @@
 
 # New(2024年9月30日)
 
-| 学习笔记                 | 课程                                                         | 笔记                                |
-| ------------------------ | ------------------------------------------------------------ | ----------------------------------- |
-| Evidential Deep Learning | [MIT 6.S191: Evidential Deep Learning and Uncertainty - YouTube](https://www.youtube.com/watch?v=toTcf7tZK8c&t=1528s) | [EDL](ml/EvidentialDeepLearning.md) |
+| 学习笔记                 | 课程                                                         | 笔记                                      |
+| ------------------------ | ------------------------------------------------------------ | ----------------------------------------- |
+| Evidential Deep Learning | [MIT 6.S191: Evidential Deep Learning and Uncertainty - YouTube](https://www.youtube.com/watch?v=toTcf7tZK8c&t=1528s) | [EDL](ml/EvidentialDeepLearning.md)       |
+| C++                      |                                                              | [C++](others/Cplusplus.md)                |
+| Diffusion model          |                                                              | [Diffusion model](others\扩散模型学习.md) |
 
 | 文章名称              | PDF                                                          | 代码                                                         | 笔记                     |
 | --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------ |
